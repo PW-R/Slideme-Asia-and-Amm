@@ -1,0 +1,14 @@
+.menu-container {
+    width: auto;
+    height: auto;
+}
+
+.menu-list-container {
+    display: flex;
+    justify-content: center;
+    margin: 1rem ;
+}
+
+.nav-item {
+    margin-right: 2rem;
+}

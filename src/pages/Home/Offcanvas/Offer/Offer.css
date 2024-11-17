@@ -1,0 +1,90 @@
+.offer-container {
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.offer-tab {
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    text-align: center;
+    
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    grid-gap: 0.5rem;
+
+    padding-top: 2rem;
+}
+
+.offer-profile-driver {
+    position: relative;
+    display: inline-block;
+    padding-left: 0.5rem;
+}
+
+.offer-profile-driver i {
+    position: absolute;
+    bottom:2.5rem;
+    left: 3.5rem;
+    font-size: 1.3rem;
+    border-radius: 50%;
+    color: #FFC30F;
+}
+
+.p-circle-image {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    
+    width: 4rem; 
+    height: 4rem;
+    background-color: #ddd;
+    border-radius: 50%; 
+}
+
+.offer-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 0.5rem;
+}
+
+.offer-detail h1 {
+    font-size: 20px !important;
+    margin: 0;
+    font-weight: bold;
+    color: #0dc964;
+}
+
+.offer-detail p {
+    font-size: 0.7rem;
+
+    margin: 0;
+    line-height: 1.5;
+    color: rgb(83, 83, 83);
+}
+
+.offer-choose {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-end;
+    line-height: 2rem;
+    padding-right: 0.5rem;
+}
+
+.offer-choose p {
+    font-size: 0.8rem;
+    font-weight: light;
+    line-height: 2rem;
+    color: rgb(0, 0, 0);
+    
+    text-align: right;
+    margin: 0;
+    padding-right: 1rem;
+
+}

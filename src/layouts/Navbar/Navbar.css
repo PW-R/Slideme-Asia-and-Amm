@@ -1,0 +1,10 @@
+.navbar-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1.5rem ;
+    padding: 1rem;
+    border-radius: 2rem;
+    background-color: #0dc964;
+    z-index: 3;
+}

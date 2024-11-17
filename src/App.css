@@ -1,0 +1,43 @@
+.body-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.app-container {
+  width: 402px;
+  height: 874px;
+  height: 100vh;
+  border: 1px solid #ccc;
+  overflow: hidden;
+  border-radius: 1.5rem;
+  
+}
+
+.title {
+  position: relative;
+  background-color: #0dc964;
+  box-shadow: 0 0 10px #969696 ;
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  z-index: 3000;
+}
+
+.title h1 {
+  font-weight: bolder;
+  margin: 0;
+  color: #ffffff;
+}
+
+.title i {
+  position: absolute;
+  left: 1rem; 
+  font-size: 24px;
+  color: #ffffff;
+  bottom: 1rem;
+}
