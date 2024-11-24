@@ -6,47 +6,28 @@
     grid-template-columns: 1fr 3fr 2fr;
     grid-gap: 10px;
     
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .s-profile-driver {
     position: relative;
     display: inline-block;
-    padding-left: 0.5rem;
 }
 
 .s-profile-driver i {
     position: absolute;
-    bottom:2.5rem;
-    left: 3.5rem;
-    font-size: 1.5rem;
+    bottom: 45px;
+    left: 60px;
+    font-size: 28px;
     border-radius: 50%;
     color: #FFC30F;
-}
-
-.detail {
-    text-align: left;
-    align-items: center;
-}
-
-.detail h1 {
-    font-size: 20px !important;
-    margin: 0;
-    font-weight: bold;
-    color: #0dc964;
-}
-
-.detail p {
-    font-size: 10px;
-    margin: 0;
-    line-height: 1.5;
-    color: rgb(83, 83, 83);
 }
 
 .book-again{
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    text-decoration: none;
 }
 
 .book-again p {
@@ -55,5 +36,5 @@
     margin: 0;
     padding-right: 0.5rem;
     font-weight: bold;
-    color: blue;
+    color: #004AAD;
 }

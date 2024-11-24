@@ -1,4 +1,5 @@
 import './Progress.css'
+import { Link } from 'react-router-dom';
 
 const data = {
     progress: null, // หรือ []
@@ -20,7 +21,7 @@ function Progress({data}) {
 
                     <div className='profile-driver'>
                         <i class="bi bi-geo-alt-fill"></i>
-                        <div className="p-circle-image"></div>
+                        <div className="circle-image"></div>
                     </div>
 
                     <div className='detail'>
@@ -30,7 +31,12 @@ function Progress({data}) {
                     </div>
 
                     <div className='in_progress'>
-                        <p>{item.status}</p>
+                        <Link 
+                            to="/tracking"
+                            onClick={() => setTab('tracking')}>
+                            <p>{item.status}</p>
+                        </Link>
+                        {/* <p>{item.status}</p> */}
                     </div>
                     
                 </div>

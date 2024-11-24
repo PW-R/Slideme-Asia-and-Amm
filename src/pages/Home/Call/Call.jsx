@@ -1,105 +1,213 @@
-import { useState, useEffect } from "react";
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Button, Offcanvas } from "react-bootstrap";
 
-import { useJsApiLoader } from "@react-google-maps/api";
-
+import Map from "./Map/Map";
+import L from 'leaflet';
+import { Outlet } from 'react-router';
+import { usePosition } from "../../../data/PositionContext";
 
 import './Call.css';
 
-import Map from "../Map/Map";
-// import Mapgg from "../Mapgg/Mapgg";
-import { map } from "leaflet";
-
-
 function Call() {
-    const [tab, setTab] = useState('details');
-    const [show, setShow] = useState(true);
+  const [tab, setTab] = useState('details');
+  const [show, setShow] = useState(true);
+  const { origin, destination } = usePosition();
+//   const [isRouteReady, setIsRouteReady] = useState(false); // Track if route is ready
+    
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+//   const handleShow = () => setShow(true);
+//   const handleClose = () => setShow(false);
 
-    const handleShow = () => {
-        setShow(true);
-        setTab('details');
-    };
+  console.log('Origin:', origin); 
+  console.log('Destination:', destination); 
 
-    const handleClose = () => setShow(false);
+  const mapContainerRef = useRef(null); // Create a ref for the map container
 
-    const handleTabChange = (newTab) => {
-        setTab(newTab);
-        navigate(`/home/call/offcanvas/${newTab}`);
-    };
+  const handleShow = () => {
+    setShow(true);
+    setTab('details');
+  };
 
+  const handleClose = () => setShow(false);
 
-    // const mapOptions = {
-    //     googleMapsApiKey: GOOGLE_MAPS_API_KEY, 
-    // };
+  const handleTabChange = (newTab) => {
+    setTab(newTab);
+    navigate(`/call/${newTab}`);
+  };
 
-    // const { isLoaded } = useJsApiLoader({
-    //     id: mapOptions.googleMapsApiKey,
-    //     googleMapsApiKey: mapOptions.googleMapsApiKey,
-    //   });
+  useEffect(() => {
+    if (tab === 'details') {
+      navigate('/call/details');
+    }
+  }, [navigate, tab]);
+  
 
-    return (
-        <div className="home-container">
-            <div className="title">
-                <Link 
-                    to='/search'
-                    onClick={() => setTab('search')}
-                    >
-                    <i className="bi bi-caret-left-fill" ></i>
-                </Link>
-                <h1>เรียกรถสไลด์</h1>
-            </div>
+  useEffect(() => {
+    if (origin && destination && mapContainerRef.current) {
+      const map = L.map(mapContainerRef.current).setView(origin, 13);
 
-            <div className="home-map">
-                <Map />
-                {/* <Mapgg isLoaded={isLoaded} /> */}
-            </div>
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+      }).addTo(map);
 
-            <div className="home-button">
-                <Button 
-                    variant="primary" 
-                    onClick={handleShow} 
-                    className="me-2">
-                    เรียกรถสไลด์
-                </Button>
+      const routingControl = L.Routing.control({
+        waypoints: [L.latLng(origin[0], origin[1]), L.latLng(destination[0], destination[1])],
+        routeWhileDragging: true,
+        lineOptions: { styles: [{ color: 'blue', weight: 6 }] },
+      });
 
-                <div className="offcanvas-container">
-                    <Offcanvas 
-                        show={show} 
-                        onHide={handleClose} 
-                        placement="bottom"
-                        className="offcanvas"
-                    >
-                        <Offcanvas.Body className="nav nav-underline">
-                            <div className="button-container">
-        
-                                <button
-                                    className={`nav-link ${tab === 'details' ? 'active' : ''}`}
-                                    onClick={() => handleTabChange('details')}
-                                >
-                                    รายละเอียด
-                                </button>
+      routingControl.on('routesfound', () => {
+        setIsRouteReady(true);
+      });
 
-                                <button
-                                    className={`nav-link ${tab === 'offer' ? 'active' : ''}`}
-                                    onClick={() => handleTabChange('offer')}
-                                >
-                                    Offer
-                                </button>
-                            </div>
-                        </Offcanvas.Body>
+      routingControl.addTo(map);
 
-                        <div className="outlett-container">
-                            <Outlet />
-                        </div>
-                        
-                    </Offcanvas>
-                </div>
-            </div>
+      return () => {
+        map.remove();
+      };
+    }
+  }, [origin, destination]);
+
+  return (
+
+  <div className="app-container">
+    <div className="call-container">
+
+      <div className="title-map">
+        <Link to='/search' onClick={() => setTab('search')}>
+          <i className="bi bi-caret-left-fill"></i>
+        </Link>
+        <h1>เรียกรถสไลด์</h1>
+      </div>
+
+      {/* Map */}
+      <div className="call-map">
+        {origin && destination ? (
+          <Map />
+        ) : (
+          <p className="alert">กรุณาเลือกตำแหน่งต้นทางและปลายทางก่อน</p>
+        )}
+      </div>
+
+      <div className="call-tab">
+        <div className="two-button">
+          <button
+            className={`nav-link ${tab === 'details' ? 'active' : ''}`}
+            onClick={() => handleTabChange('details')}
+            >
+            รายละเอียด
+          </button>
+
+          <button
+            className={`nav-link ${tab === 'offer' ? 'active' : ''}`}
+            onClick={() => handleTabChange('offer')}
+            >
+            Offer
+          </button>
         </div>
-    );
+        
+        <div className="call-outlet">
+          <Outlet />
+        </div>
+    </div>
+
+
+
+
+
+    {/* <div className="call-button">
+      <Button 
+        className={tab === 'information' ? 'btn btn-success' : 'btn btn-outline-success'}
+        onClick={handleShow}>
+        เรียกรถสไลด์
+      </Button>
+    </div> */}
+
+
+        {/* <Offcanvas show={show} onHide={handleClose} placement="bottom"
+            className="offcanvas" backdrop={false}>
+            <Offcanvas.Header className="offcanvas-header">
+              <button
+                  className={`nav-link ${tab === 'details' ? 'active' : ''}`}
+                  onClick={() => handleTabChange('details')}
+                >
+                  รายละเอียด
+                </button>
+
+                <button
+                  className={`nav-link ${tab === 'offer' ? 'active' : ''}`}
+                  onClick={() => handleTabChange('offer')}
+                  >
+                  Offer
+                </button>
+            </Offcanvas.Header>
+
+            <Offcanvas.Body>
+              <Outlet />
+            </Offcanvas.Body>
+        </Offcanvas> */}
+
+        {/* <div className='call-list-container'>
+                <ul className="nav nav-underline">
+
+                    <li className="call-item" >
+                        <Link 
+                            to='details' 
+                            className={`nav-link ${tab === 'details' ? 'active' : ''}`}
+                            onClick={() => handleTabChange('details')}>
+                            <p>รายละเอียด</p>
+                        </Link>
+                    </li>
+                    <li className="call-item" >
+                        <Link 
+                            to='offer' 
+                            className={`nav-link ${tab === 'offer' ? 'active' : ''}`}
+                            onClick={() => handleTabChange('offer')}
+                            >
+                            <p>Offer</p>
+                        </Link>
+                    </li>
+                </ul>    
+                <Outlet />
+            </div> */}
+
+        {/* <div className="offcanvas-container">
+          <Offcanvas show={show} onHide={handleClose} placement="bottom" 
+                    >
+            <Offcanvas.Body className="nav nav-underline">
+              
+              <div className="button-container">
+                
+                <button
+                  className={`nav-link ${tab === 'details' ? 'active' : ''}`}
+                  onClick={() => handleTabChange('details')}
+                >
+                  รายละเอียด
+                </button>
+
+                <button
+                  className={`nav-link ${tab === 'offer' ? 'active' : ''}`}
+                  onClick={() => handleTabChange('offer')}
+                  >
+                  Offer
+                </button>
+
+              </div>
+
+            </Offcanvas.Body>
+
+            <div className="outlett-container">
+              <Outlet />
+            </div>
+          </Offcanvas>
+        </div> */}
+
+      {/* </div> */}
+    </div>
+    </div>
+  );
 }
 
 export default Call;

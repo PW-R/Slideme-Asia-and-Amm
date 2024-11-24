@@ -1,0 +1,169 @@
+/* .map-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  } */
+
+.tracking-map {
+  flex-grow: 1; /* ขยายส่วนนี้เพื่อเติมเต็มพื้นที่ระหว่าง title และ map-details */
+  height: 500px; /* ใช้ความสูงอัตโนมัติ */
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  top: 100px;
+  flex-grow: 1; /* ขยายพื้นที่แผนที่ */
+}
+
+/* tracking-details */
+.tracking-tab {
+  background-color: rgb(255, 255, 255);
+  border-radius: 2rem 2rem 0 0; /* ขอบโค้งเฉพาะด้านบน */
+  position: absolute; /* ยึดตาม app-container */
+  bottom: 0; /* ชิดขอบล่างของ app-container */
+  width: 100%; /* กว้างเท่ากับ app-container */
+  height: 320px; /* กำหนดความสูงที่แน่นอน */
+  z-index: 1000; /* อยู่เหนือแผนที่ */
+  padding: 1rem;
+  overflow-y: auto; /* เปิด scroll หากเนื้อหายาวเกิน */
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* เงาเบลอด้านบน */
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  z-index: 5000;
+}
+
+.tracking-details {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+/* tracking-details-2 */
+.tracking-details-2 {
+  margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.tracking-details-2 h3 {
+  font-weight: bold;
+}
+
+.tracking-details-2 p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.tracking-details-2 i {
+  font-size: 25px;
+  padding-right: 10px;
+}
+
+/* tracking-car */
+.tracking-car {
+  margin: 1.5rem 0.5rem 0.5rem 0.5rem;
+}
+
+.car-image {
+  display: flex; /* ใช้ Flexbox */
+  justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+  align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+  flex-direction: column; /* จัดเรียงพารากราฟในแนวตั้ง */
+}
+
+.car-info {
+  display: flex; /* ใช้ Flexbox */
+  justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+  align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+  flex-direction: column; /* จัดเรียงพารากราฟในแนวตั้ง */
+}
+
+.car-info p {
+  color: #647A75;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.line-tracking {
+  border-top: 2px solid #757575;
+  width: 100%; /* ทำให้ยาวเต็มพื้นที่ */
+  margin: 0; /* ยกเลิกระยะขอบ */
+}
+
+/* tracking-driver */
+.tracking-driver {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 1fr;
+  margin: 0 0 0.5rem 0;
+  justify-items: center; /* จัดกึ่งกลางแนวนอนของแต่ละ Grid Cell */
+  align-items: center; /* จัดกึ่งกลางแนวตั้งของแต่ละ Grid Cell */
+}
+
+.driver-profile img {
+  width: 60px;
+  height: 60px; 
+}
+
+.driver-info {
+  padding-left: 10px;
+  text-align: left; /* ชิดซ้ายสำหรับข้อความทั้งหมด */
+  justify-self: start; /* บังคับให้อยู่ชิดซ้ายใน Grid Cell */
+}
+
+.driver-info p {
+  font-weight: bold;
+  margin: 10px;
+  line-height: 1;
+}
+
+.driver-info i {
+  color: #FFC30F;
+  padding-right: 5px;
+}
+
+.driver-call {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: #60B876;
+  display: flex; /* ใช้ Flexbox */
+  justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+  align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+  margin-left: 20px;
+}
+
+.driver-call i {
+  color: #377B48; 
+}
+
+.driver-chat {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  background-color: #60B876;
+  display: flex; /* ใช้ Flexbox */
+  justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+  align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+  margin-right: 20px;
+}
+
+.driver-chat i {
+  color: #377B48; 
+}
+
+.driver-chat .btn {
+  border: none; /* ไม่มีขอบ */
+}
+
+/* button */
+.tracking-button {
+  display: flex;  
+  justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+  align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
+}
+
+.tracking-button .btn {
+  width: 10rem;
+  border-color: #0dc964;
+  background-color: #0dc964;
+  border-radius: 50px;
+  margin: 0.5rem;
+  font-size: 16px;
+  color: white;
+}

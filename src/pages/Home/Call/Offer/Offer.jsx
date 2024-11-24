@@ -31,40 +31,27 @@ function offer() {
                 offers.map((offer, index) => (
 
                 <div className='offer-tab' key={index}>
-
                     <div className='offer-profile-driver'>
-                        <i class="bi bi-bookmark-fill"></i>
+                        <i className="bi bi-bookmark-fill"></i>
                         <div className="p-circle-image"></div>
                     </div>
-
                     <div className='offer-detail'>
                         <h1>{offer.title}</h1>
                         <p>{offer.date}</p>
                     </div>
-
                     <div className='offer-choose'>
                         <p>฿{offer.price}</p>
-
                         <Link to='/summon'>
-                            <button 
-                                className={'btn ' + (tab === 'summon' ?  'btn-primary' :
-                                'btn-outline-primary')}
-                                onClick={() => setTab('summon')}
-                                style={{
-                                    backgroundColor: tab === 'summon' ? '#0dc964' : '#0dc964', // สีพื้นหลัง
-                                    color: tab === 'summon' ? '#FFFFFF' : '#FFFFFF', // สีตัวอักษร
-                                    borderRadius: '50px',
-                                    padding: '2px 20px', 
-                                }}
-                                >
+                            <Button
+                                variant="success"   
+                                onClick={() => setTab('summon')}>
                                 เลือก
-                            </button>
+                            </Button>
                         </Link>
                     </div>
                 </div>
                 ))
             )}
-
         </div>
      );
 }

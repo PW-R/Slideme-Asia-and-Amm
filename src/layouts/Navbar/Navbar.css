@@ -2,9 +2,19 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
-    margin: 1.5rem ;
     padding: 1rem;
     border-radius: 2rem;
     background-color: #0dc964;
-    z-index: 3;
+    position: absolute; /* ใช้ position absolute เพื่อให้ navbar อยู่ภายในกรอบ */
+    bottom: 20px; /* วาง navbar ที่ด้านล่างสุดของ app-container */
+    left: 50%; /* ชิดขอบซ้ายสุด */
+    transform: translateX(-50%); /* ย้าย navbar ไปกลาง */
+    width: 350px; /* กำหนดความกว้างเป็น 350px */
+    z-index: 1000; /* อยู่เหนือสุดของเนื้อหาในกรอบ */
+  }
+  
+
+/* เพิ่มระยะห่างให้กับเนื้อหาด้านบน navbar */
+body {
+    padding-bottom: 80px; /* เพิ่มระยะห่างด้านล่างเพื่อไม่ให้เนื้อหาทับ navbar */
 }

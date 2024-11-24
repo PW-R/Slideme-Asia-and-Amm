@@ -3,22 +3,26 @@
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
+  height: 100vh;
+  margin: 0;
 }
 
 .app-container {
-  width: 402px;
-  height: 874px;
-  height: 100vh;
+  width: 402px;  
+  height: 874px;  
+  max-width: 100%; 
+  max-height: 100%; 
   border: 1px solid #ccc;
   overflow: hidden;
   border-radius: 1.5rem;
-  
+  position: relative; /* ตั้ง position เพื่อให้ลูกภายในยึดตามกรอบ */
 }
 
+
 .title {
-  position: relative;
+  position: relative; /* เปลี่ยนจาก fixed เป็น relative เพื่อให้ title อยู่ภายใน .app-container */
   background-color: #0dc964;
-  box-shadow: 0 0 10px #969696 ;
+  box-shadow: 0 0 10px #969696;
   height: 120px;
   display: flex;
   align-items: flex-end;
@@ -29,12 +33,42 @@
 }
 
 .title h1 {
-  font-weight: bolder;
+  font-weight: lighter;
   margin: 0;
   color: #ffffff;
 }
 
 .title i {
+  position: absolute;
+  left: 1rem; 
+  font-size: 24px;
+  color: #ffffff;
+  bottom: 1rem;
+}
+
+.title-map {
+  position: absolute; /* ใช้ absolute แทน fixed เพื่อให้อยู่ภายในกรอบ */
+  top: 0; /* ยึดอยู่ที่ด้านบนสุดของกรอบ */
+  left: 0; /* ยึดขอบซ้ายสุดของกรอบ */
+  width: 100%; /* ให้กว้างเต็มกรอบ */
+  background-color: #0dc964;
+  box-shadow: 0 0 10px #969696;
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  border-radius: 0 0 1rem 1rem;
+  z-index: 3000; /* ให้อยู่เหนือสุดภายในกรอบ */
+}
+
+.title-map h1 {
+  font-weight: lighter;
+  margin: 0;
+  color: #ffffff;
+}
+
+.title-map i {
   position: absolute;
   left: 1rem; 
   font-size: 24px;

@@ -1,34 +1,44 @@
 import { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
-// import MapView from 'react-native-maps';
-// import { AppRegistry } from 'react-native-web';
-// import { View, Text } from 'react-native-web';
-
 import Layout from "./layouts/Layout/Layout";
-
-// import { Outlet } from 'react-router';
-
-import Menu from "./pages/Menu/Menu";
-import Progress from "./pages/Menu/Progress/Progress";
-import Saved from "./pages/Menu/Saved/Saved";
-import History from "./pages/Menu/History/History";
-
-import Call from "./pages/Home/Call/Call";
-// import Home from "./pages/Home/Call/Call";
-import Details from "./pages/Home/Offcanvas/Details/Details";
-import Offer from "./pages/Home/Offcanvas/Offer/Offer";
-import Search from "./pages/Home/Search/Search";
-import MapPage from "./pages/Home/Search/MapPage/MapPage";
-
-import Summon from "./pages/Home/Summon/Summon";
-import Information from "./pages/Home/Summon/Information/Information";
-import Chat from "./pages/Home/Summon/Chat/Chat";
-// import Call from "./pages/Home/Summon/Call/Call";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 import './App.css'
+
+// Menu
+import Menu from "./pages/Menu/Menu";
+import Progress from "./pages/Menu/Progress/Progress";
+import Saved from "./pages/Menu/Saved/Saved";
+import History from "./pages/Menu/History/History";
+
+// Home
+import HomePage from "./pages/Home/HomePage/HomePage";
+import Map_HomePage from "./pages/Home/HomePage/Map_HomePage/Map_HomePage";
+
+// Search page
+import Search from "./pages/Home/Search/Search";
+import MapPage from "./pages/Home/Search/MapPage/MapPage";
+
+// Call page
+import Call from "./pages/Home/Call/Call";
+import Details from "./pages/Home/Call/Details/Details";
+import Offer from "./pages/Home/Call/Offer/Offer";
+
+// Summon page
+import Summon from "./pages/Home/Summon/Summon";
+import Information from "./pages/Home/Summon/Information/Information";
+import Chat from "./pages/Home/Summon/Chat/Chat";
+
+// Tracking page
+import Tracking from "./pages/Home/Tracking/Tracking";
+
+// User 
+import Created_Position from "./pages/User/Created_Position/Created_Position";
+import Map_Created_Position from "./pages/User/Created_Position/Map-Created_Position/Map_Created_Position";    
+
+import { PositionProvider } from "./data/PositionContext";
 
 const initPage = "menu";
 
@@ -41,45 +51,61 @@ function App() {
   }, [])
 
   return (
-    // <IphoneX>
+    <PositionProvider>
 
-    <div className='body-container'>
+      <div className='body-container'>
+        <div className="app-container">
+          
+        <HashRouter>
+            <Routes>
+                < Route element={<Layout tab={tab} setTab={setTab} />}>
+                
+                    {/* เส้นทางหลัก */}
+                    <Route path="/" element={<Search tab={tab} setTab={setTab} />} />
+                
+                    {/* Menu */}
+                    <Route path="/menu" element={<Menu />}>
+                      <Route index element={<Progress />} />
+                      <Route path="progress" element={<Progress />} />
+                      <Route path="saved" element={<Saved />} />
+                      <Route path="history" element={<History />} />
+                    </Route>
 
-      <div className="app-container">
-      <HashRouter>
-          <Routes>
-            <Route element={<Layout tab={tab} setTab={setTab} />}>
-              {/* เส้นทางหลัก */}
-              <Route path="/search" element={<Search tab={tab} setTab={setTab} />} />
-              <Route path="/map" element={<MapPage />} />
+                    {/* Home Routes */}
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/map" element={<MapPage />} /> {/* No Navbar here */}
+                    <Route  path="homepage" element={<HomePage />} />
+                    <Route path="/map_homepage" element={<Map_HomePage />} />
 
-              {/* เส้นทางหลักสำหรับ /home/call */}
-              <Route path="/home/call" element={<Call tab={tab} setTab={setTab} />}>
-                <Route path="offcanvas/details" element={<Details />} />
-                <Route path="offcanvas/offer" element={<Offer />} />
+                      {/* Call page */}
+                      <Route path="/call" element={<Call />}>
+                        <Route path="details" element={<Details />} />
+                        <Route path="offer" element={<Offer />} />
+                      </Route>
+
+                      {/* Summon page */}
+                      <Route path="summon" element={<Summon />} />
+                      <Route path="information" element={<Information />} />
+                      <Route path="chat" element={<Chat />} />
+
+                      {/* Tracking page */}
+                      <Route path="tracking" element={<Tracking />} />
+
+                    {/* User */}
+                    {/* < Route path="/user" element={<Created_Position />}> */}
+                          <Route path="created_position" element={<Created_Position />} />
+                          <Route path="map_created_position" element={<Map_Created_Position />} />     
+                    {/* </Route> */}
+                          
+                
               </Route>
+            </Routes>
 
-              {/* เส้นทางอื่นๆ */}
-              <Route path="summon" element={<Summon />} />
-              <Route path="information" element={<Information />} />
-              <Route path="chat" element={<Chat />} />
+          </HashRouter>
+        </div>
 
-              {/* เมนู */}
-              <Route path="/menu" element={<Menu />}>
-                <Route index element={<Progress />} />
-                <Route path="progress" element={<Progress />} />
-                <Route path="saved" element={<Saved />} />
-                <Route path="history" element={<History />} />
-              </Route>
-            </Route>
-          </Routes>
-        </HashRouter>
       </div>
-
-
-
-    </div>
-    // </IphoneX>
+    </PositionProvider>
   )
 }
 

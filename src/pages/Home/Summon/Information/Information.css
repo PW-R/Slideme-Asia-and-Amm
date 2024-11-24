@@ -9,22 +9,22 @@
     flex-direction: column;
     align-items: center;
     text-align: center; 
-    margin: 3rem 1.5rem 1.5rem;
+    margin: 2rem 1.5rem 1.5rem;
 }
 
-.circle-image {
+.driver-image {
     display: flex;
     justify-content: center;
     align-items: center; 
     
-    width: 7rem; 
-    height: 7rem;
+    width: 126px; 
+    height: 126px;
     border-radius: 50%; 
     background-color: #ddd;
 }
 
 .information-name-driver h2 {
-    margin: 1rem ;
+    margin: 0.5rem ;
     font-weight: bold;
 }
 
@@ -38,7 +38,7 @@
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 1rem;
     margin: 1.5rem;
-
+    margin-bottom: 0.5rem;
     text-align: center;
 }
 
@@ -51,50 +51,52 @@
 }
 
 /* line */
-.line {
+.line-information {
     border-top: 3px solid #0dc964;
     margin: 0 1.5rem 0 1.5rem;
 }
 
 /* detail */
-.information-3-detail-container {
-    display: grid;
-    margin: 1.5rem ;
-}
-
 .information-3-detail {
     display: grid;
-    grid-template-columns: 1fr 9fr;
-    padding: 0.5rem;
+    margin: 1.5rem ;
 }
 
 .information-3-detail i {
     font-size: 1.3rem;
     color: #479E5D;
+    padding-right: 20px;
 } 
 
 .information-3-detail p {
     margin: 0;
+    line-height: 2;
 }
 
 /* review */
 .information-review-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 0.7rem;
+    grid-gap: 0.5rem;
     margin: 1.5rem;
 }
 
 .information-review {
+    width: 170px;
+    height: 60px;
     border: 1px #0dc964 solid;
     border-radius: 0.5rem;
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    padding: 1rem;
-    line-height: 0.5rem;
+    grid-template-columns: 5fr 1fr;
+    line-height: 1rem;
+    padding: 0.5rem;
 }
 
 .information-review p {
-    padding: 0.5rem;
+    font-size: 15px;
     margin: 0;
+    text-align: left;
+    display: flex; 
+    align-items: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+    height: 100%; /* ให้พอดีกับความสูงของ container */
 }

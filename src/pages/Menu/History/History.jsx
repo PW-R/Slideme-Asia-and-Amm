@@ -25,7 +25,7 @@ function History({data}) {
                 <div className='history-tab' key={item.id}>
 
                     <div className='profile-driver'>
-                        <div className="p-circle-image"></div>
+                        <div className="circle-image"></div>
                         <i class="bi bi-check-circle-fill"></i>
                     </div>
 
@@ -37,8 +37,8 @@ function History({data}) {
 
                     <div className='book-again'>
                         <Link 
-                            to='/home/call'
-                            onClick={() => setTab('/call')}>
+                            to='/call'
+                            onClick={() => setTab('call')}>
                             <p>{item.status}</p>
                         </Link>
                     </div>

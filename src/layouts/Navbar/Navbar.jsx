@@ -10,11 +10,11 @@ function Navbar() {
     return ( 
         <div className="navbar-container">
 
-            <Link to='/search'>
+            <Link to='/homepage'>
                 <button 
-                    className={'btn ' + (tab === 'search' ?  'btn-primary' :
+                    className={'btn ' + (tab === 'homepage' ?  'btn-primary' :
                     'btn-outline-primary')}
-                    onClick={() => setTab('search')}>Home
+                    onClick={() => setTab('homepage')}>Home
                 </button>
             </Link>
 
@@ -30,15 +30,15 @@ function Navbar() {
                 <button 
                     className={'btn ' + (tab === 'call' ?  'btn-primary' :
                     'btn-outline-primary')}
-                    onClick={() => setTab('call')}>Home
+                    onClick={() => setTab('call')}>Noti
                 </button>
             </Link>
 
-            <Link to='/menu'>
+            <Link to='/created_position'>
                 <button 
-                    className={'btn ' + (tab === 'menu' ?  'btn-primary' :
+                    className={'btn ' + (tab === 'created_position' ?  'btn-primary' :
                     'btn-outline-primary')}
-                    onClick={() => setTab('menu')}>Menu
+                    onClick={() => setTab('created_position')}>user
                 </button>
             </Link>
             

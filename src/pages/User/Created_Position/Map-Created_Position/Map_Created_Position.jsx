@@ -1,12 +1,16 @@
 import { useState, useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { usePosition } from "../../../../data/PositionContext";
-import L from "leaflet";
-import "./MapPage.css";
 
-function MapPage() {
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
+import { usePosition } from "../../../../data/PositionContext";
+import { useCreatedPosition } from "../../../../data/PositionContext";
+
+import "./Map_Created_Position.css";
+
+function Map_Created_Position() {
   const [position, setPosition] = useState(null);
   const [address, setAddress] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,6 +20,7 @@ function MapPage() {
   const location = useLocation();
   const searchType = location.state?.type || "origin"; // รับข้อมูลว่าเป็นต้นทางหรือปลายทาง
   const { setOrigin, setDestination } = usePosition();
+  const { createdPosition, setCreatedPosition } = useCreatedPosition(); // ดึงข้อมูลตำแหน่งที่สร้างไว้
 
   const [title, setTitle] = useState("");
 
@@ -47,7 +52,6 @@ function MapPage() {
         .catch((error) => console.error("Error fetching address:", error));
     }
   }, [position]);
-  
 
   useEffect(() => {
     if (searchType === "origin") {
@@ -68,7 +72,7 @@ function MapPage() {
           )}&addressdetails=1&limit=5&countrycodes=TH&accept-language=th,en`
         );
         const data = await response.json();
-  
+
         // จัดลำดับให้ภาษาไทยก่อนภาษาอังกฤษ
         const processedResults = data.map((result) => {
           const displayName = result.display_name;
@@ -78,7 +82,7 @@ function MapPage() {
             display_name: isThai ? displayName : `${displayName} (EN)`, // ภาษาไทยเป็นหลัก หากไม่มีเพิ่ม "(EN)"
           };
         });
-  
+
         setSearchResults(processedResults);
       } catch (error) {
         console.error("Error fetching search results:", error);
@@ -87,7 +91,6 @@ function MapPage() {
       setSearchResults([]);
     }
   };
-  
 
   const MapClickHandler = () => {
     useMapEvents({
@@ -104,25 +107,28 @@ function MapPage() {
       return;
     }
 
+    const newCreatedPosition = { position, address };
+    setCreatedPosition([...createdPosition, newCreatedPosition]); // บันทึกตำแหน่งที่เลือกใหม่
+
     if (searchType === "origin") {
       setOrigin(position);
     } else if (searchType === "destination") {
       setDestination(position);
     }
-    navigate("/search");
+
+    navigate("/created_position");  
   };
 
   const handleSelectResult = (lat, lon) => {
     setPosition([lat, lon]);
     setSearchResults([]);
   };
-  
 
   return (
     <div className="mappages-container">
 
       <div className="title-map">
-        <Link to="/search">
+        <Link to="/created_position">
           <i className="bi bi-caret-left-fill"></i>
         </Link>
         <h1>{title}</h1>
@@ -130,7 +136,7 @@ function MapPage() {
 
       <div className="search-map-container">
         <div className="icon">
-          <i class="bi bi-search"></i>        
+          <i className="bi bi-search"></i>        
         </div>
 
         <input
@@ -150,9 +156,7 @@ function MapPage() {
               </div>
             ))}
           </div>
-
         )}
-
       </div>
 
       <div className="map-page">
@@ -162,8 +166,7 @@ function MapPage() {
           zoom={13}
           style={{ height: "80vh", width: "100%" }}
           whenCreated={(map) => (mapRef.current = map)}
-          zoomControl={false}
-          >
+          zoomControl={false}>
           
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -176,16 +179,12 @@ function MapPage() {
               <Popup>{address || "ตำแหน่งที่เลือก"}</Popup>
             </Marker>
           )}
-
         </MapContainer>
       </div>
 
       <div className="map-details">
 
         <div className="selected-location">
-          {/* <p>
-            ตำแหน่งที่เลือก: {position ? `${position[0]}, ${position[1]}` : "ยังไม่ได้เลือก"}
-          </p> */}
           <h2>ตำแหน่งที่เลือก</h2>
           <p>{address || "..."}</p>
         </div>
@@ -194,7 +193,7 @@ function MapPage() {
           <button 
             className="btn btn-success" 
             onClick={handleConfirm}>
-            ยืนยันตำแหน่ง
+            บันทึก
           </button>
         </div>
 
@@ -203,4 +202,4 @@ function MapPage() {
   );
 }
 
-export default MapPage;
+export default Map_Created_Position;

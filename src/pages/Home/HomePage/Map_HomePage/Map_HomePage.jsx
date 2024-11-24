@@ -4,9 +4,9 @@ import "leaflet/dist/leaflet.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { usePosition } from "../../../../data/PositionContext";
 import L from "leaflet";
-import "./MapPage.css";
+import "./Map_HomePage.css";
 
-function MapPage() {
+function Map_HomePage() {
   const [position, setPosition] = useState(null);
   const [address, setAddress] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -109,14 +109,13 @@ function MapPage() {
     } else if (searchType === "destination") {
       setDestination(position);
     }
-    navigate("/search");
+    navigate("/homepage");
   };
 
   const handleSelectResult = (lat, lon) => {
     setPosition([lat, lon]);
     setSearchResults([]);
   };
-  
 
   return (
     <div className="mappages-container">
@@ -125,7 +124,7 @@ function MapPage() {
         <Link to="/search">
           <i className="bi bi-caret-left-fill"></i>
         </Link>
-        <h1>{title}</h1>
+        <h1>ตำแหน่งที่สร้างไว้</h1>
       </div>
 
       <div className="search-map-container">
@@ -194,7 +193,7 @@ function MapPage() {
           <button 
             className="btn btn-success" 
             onClick={handleConfirm}>
-            ยืนยันตำแหน่ง
+            บันทึก
           </button>
         </div>
 
@@ -203,4 +202,4 @@ function MapPage() {
   );
 }
 
-export default MapPage;
+export default Map_HomePage;

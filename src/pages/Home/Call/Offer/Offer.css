@@ -4,6 +4,7 @@
     border-radius: 0.5rem;
     text-align: center;
     padding: 1rem;
+    padding-top: 0.5rem;
 }
 
 .offer-tab {
@@ -11,24 +12,21 @@
     height: auto;
     border-radius: 0.5rem;
     text-align: center;
-    
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr;
+    grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 0.5rem;
-
-    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 .offer-profile-driver {
     position: relative;
     display: inline-block;
-    padding-left: 0.5rem;
 }
 
 .offer-profile-driver i {
     position: absolute;
-    bottom:2.5rem;
-    left: 3.5rem;
+    bottom: 40px;
+    left: 48px;
     font-size: 1.3rem;
     border-radius: 50%;
     color: #FFC30F;
@@ -38,7 +36,6 @@
     display: flex;
     justify-content: center;
     align-items: center; 
-    
     width: 4rem; 
     height: 4rem;
     background-color: #ddd;
@@ -50,7 +47,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin: 0.5rem;
 }
 
 .offer-detail h1 {
@@ -61,30 +57,39 @@
 }
 
 .offer-detail p {
-    font-size: 0.7rem;
-
+    font-size: 14px;
     margin: 0;
     line-height: 1.5;
-    color: rgb(83, 83, 83);
+    color: rgb(0, 0, 0);
 }
 
 .offer-choose {
     display: flex;
     flex-direction: column;
-    justify-content: center; 
-    align-items: flex-end;
+    justify-content: center;
+    align-items: flex-start;  /* เปลี่ยนเป็นชิดซ้าย */
     line-height: 2rem;
-    padding-right: 0.5rem;
+    padding-left: 0.5rem;  /* เพิ่ม padding ซ้ายถ้าต้องการ */
 }
 
 .offer-choose p {
-    font-size: 0.8rem;
+    font-size: 15px;
     font-weight: light;
-    line-height: 2rem;
+    line-height: 1rem;
     color: rgb(0, 0, 0);
-    
-    text-align: right;
     margin: 0;
-    padding-right: 1rem;
-
+    padding-left: 1.2rem;  /* เพิ่ม padding ซ้ายถ้าต้องการ */
 }
+
+.offer-choose .btn {
+    width: 80px;
+    height: 25px;  /* ปรับความสูง */
+    border-color: #0dc964;
+    background-color: #0dc964;
+    border-radius: 50px;
+    padding: 0;
+    font-size: 12px;
+    color: white;
+    align-self: flex-start;  /* ชิดซ้าย */
+}
+

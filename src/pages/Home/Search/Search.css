@@ -1,0 +1,103 @@
+/* เลือกตำแหน่ง */
+.location-container {
+    display: grid;
+    grid-template-columns: 1fr 8fr;
+    grid-gap: 1rem;
+    margin: 1.5rem;
+}
+
+.location-icon {
+    display: flex;
+    flex-direction: column; /* จัดเรียงให้อยู่ในแนวตั้ง */
+    align-items: flex-start; /* ชิดซ้าย */
+    justify-content: center; /* จัดให้อยู่กลางในแนวตั้ง */
+    position: relative; /* ทำให้ตำแหน่งของเส้นสามารถอ้างอิงจากตำแหน่งนี้ได้ */
+    margin: 0;
+    padding: 0;
+    grid-gap: 2.5rem;
+}
+
+.location-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    width: 1.3rem;
+    height: 1.3rem;
+    background-color: #F84C4C;
+    border-radius: 50%; 
+    position: relative; /* ใช้ position เพื่ออ้างอิงเส้น */
+    z-index: 2;
+}
+
+.location-icon i {
+    font-size: 1.5rem;
+    color: #0dc964;
+    position: relative; /* ใช้ relative เพื่อให้เส้นแสดงตำแหน่งตามไอคอน */
+    z-index: 1;
+}
+
+.location-icon::after {
+    content: '';
+    position: absolute;
+    top: 1.5rem; /* ย้ายเส้นให้อยู่ใต้วงกลม */
+    left: 0.6rem; /* ชิดซ้าย */
+    height: 50px; /* ความสูงของเส้น */
+    width: 2px; /* ความหนาของเส้น */
+    background-color: #D9D9D9; /* สีของเส้น */
+    z-index: 0;
+}
+
+.location {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 1.5rem;    
+}
+
+.location-button {
+    width: 300px; /* ใช้ความกว้างเต็มที่ของคอนเทนเนอร์ หรือกำหนดความกว้างที่ชัดเจน */
+    /* max-width: 350px; กำหนดความกว้างสูงสุดของปุ่ม */
+    height: 40px; /* กำหนดความสูงของปุ่ม */
+    padding: 10px; /* ระยะห่างภายใน */
+    font-size: 14px; /* ขนาดฟอนต์ */
+    text-overflow: ellipsis; /* แสดงข้อความที่ยาวเกินไปด้วย ... */
+    white-space: nowrap; /* ห้ามข้อความเปลี่ยนบรรทัด */
+    overflow: hidden; /* ซ่อนข้อความที่เกินขนาด */
+    display: flex;
+    align-items: center; /* จัดข้อความให้ตรงกลางในแนวตั้ง */
+    justify-content: flex-start; /* จัดข้อความให้เริ่มจากซ้าย */
+    border: 1px solid #ccc; /* ขอบปุ่ม */
+    border-radius: 10px; /* มุมปุ่มโค้งมน */
+    background-color: #D9D9D9; /* สีพื้นหลัง */
+    cursor: pointer; /* แสดง cursor เมื่อ hover */
+    text-align: left; /* จัดข้อความให้เริ่มจากซ้าย */
+    border: none; /* ไม่มีขอบ */
+}
+  
+.location-button:hover {
+    background-color: #e0e0e0; /* สีพื้นหลังเมื่อ hover */
+}
+  
+.location-button  #text {
+    font-size: 5vw; /* ขนาดตัวอักษรจะปรับตามความกว้างของหน้าจอ */
+    width: 200px; /* กำหนดความกว้างสูงสุดของปุ่ม */
+    height: 40px; /* กำหนดความสูงของปุ่ม */
+}
+
+
+/* ปุ่มค้นหา */
+.search-button {
+    display: flex;
+    justify-content: center; /* จัดกลางในแนวนอน */
+    align-items: center; /* จัดกลางในแนวตั้ง */
+}
+
+.search-button .btn {
+    width: 256px;
+    border-radius: 50px; /* ปรับมุมปุ่มให้โค้ง */
+    padding: 10px 20px; /* ปรับระยะห่างภายในปุ่ม */
+    font-size: 16px; /* ปรับขนาดตัวอักษร */
+    border-color: #0dc964; /* สีของกรอบ */
+    background-color: #0dc964; /* สีพื้นหลัง */
+    color: white; /* สีตัวอักษร */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงาเบลอใต้ขอบปุ่ม */
+}

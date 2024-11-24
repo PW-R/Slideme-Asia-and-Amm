@@ -3,15 +3,38 @@
     height: 660px;
 }
 
-.location-container {
+/* .location-container {
     width: auto;
     height: 150px;
     border-radius: 0.5rem;
     text-align: center;
     margin: 1.5rem;
     background-color: #e8e8e8;
+} */
+
+.location-text {
+    width: 300px; /* ใช้ความกว้างเต็มที่ของคอนเทนเนอร์ หรือกำหนดความกว้างที่ชัดเจน */
+    /* max-width: 350px; กำหนดความกว้างสูงสุดของปุ่ม */
+    height: 40px; /* กำหนดความสูงของปุ่ม */
+    padding: 10px; /* ระยะห่างภายใน */
+    font-size: 14px; /* ขนาดฟอนต์ */
+    text-overflow: ellipsis; /* แสดงข้อความที่ยาวเกินไปด้วย ... */
+    white-space: nowrap; /* ห้ามข้อความเปลี่ยนบรรทัด */
+    overflow: hidden; /* ซ่อนข้อความที่เกินขนาด */
+    display: flex;
+    align-items: center; /* จัดข้อความให้ตรงกลางในแนวตั้ง */
+    justify-content: flex-start; /* จัดข้อความให้เริ่มจากซ้าย */
+    border: 1px solid #ccc; /* ขอบปุ่ม */
+    border-radius: 10px; /* มุมปุ่มโค้งมน */
+    background-color: #D9D9D9; /* สีพื้นหลัง */
+    cursor: pointer; /* แสดง cursor เมื่อ hover */
+    text-align: left; /* จัดข้อความให้เริ่มจากซ้าย */
+    pointer-events: none; /* ปิดการคลิก */
+    cursor: default; /* เปลี่ยน cursor ให้เป็นปกติ (ไม่เป็นมือ) */
+border: none; /* ไม่มีขอบ */  
 }
 
+/* 3 ปุ่ม */
 .summon-3btn {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -26,20 +49,26 @@
     color: #ffffff;
     border-radius: 0.5rem;
     padding: 0.4rem;
+    border: none; /* ไม่มีขอบ */
 }
 
+/* โฆษณา */
 .summon-advert {
-    width: auto;
+    width: auto; 
     height: 150px;
-    border-radius: 0.5rem;
-    text-align: center;
-    padding: 1rem;
-    margin: 1.5rem;
-    background-image: url('./car.png');
-    background-size: cover;
-    background-position: center;
+    margin: 1.5rem; /* จัดให้อยู่ตรงกลางและเพิ่มระยะห่างด้านบน */
+    border-radius: 1rem; /* มุมโค้งมน */
+    overflow: hidden; /* ซ่อนส่วนเกินของขอบมุม */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* เพิ่มเงา */
 }
 
+.summon-advert .carousel-item img {
+    width: 100%; /* ทำให้รูปภาพขยายเต็มความกว้าง */
+    height: 100%; /* ทำให้รูปภาพขยายเต็มความสูง */
+    object-fit: cover; /* ให้รูปภาพขยายหรือหดตัวตามสัดส่วน */
+}
+
+/* detail */
 .summon-detail {
     margin: 1.5rem;
 }
@@ -55,6 +84,11 @@
     color: red;
 }
 
+.summon-detail .status {
+    color: red;
+}
+
+/* 2 ปุ่ม */
 .summon-btn {
     display: grid;
     grid-template-columns: 2fr 2fr;
@@ -69,4 +103,5 @@
     color: #ffffff;
     border-radius: 1rem;
     padding: 0.4rem;
+    border: none; /* ไม่มีขอบ */
 }

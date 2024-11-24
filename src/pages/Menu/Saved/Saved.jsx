@@ -26,7 +26,7 @@ function Saved({data}) {
                 <div className='saved-tab' key={item.id}>
 
                     <div className='s-profile-driver'>
-                        <div className="p-circle-image"></div>
+                        <div className="circle-image"></div>
                         <i class="bi bi-bookmark-fill"></i>
                     </div>
 
@@ -38,8 +38,8 @@ function Saved({data}) {
 
                     <div className='book-again'>
                         <Link 
-                            to="/home/call"
-                            onClick={() => setTab('/call')}>
+                            to="/call"
+                            onClick={() => setTab('call')}>
                             <p>{item.status}</p>
                         </Link>
                     </div>

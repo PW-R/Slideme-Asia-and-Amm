@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
-import MenuList from "./MenuList/MenuList";
+// import MenuList from "./MenuList/MenuList";
 import { Outlet } from 'react-router';
-import './Menu.css'
+
 
 import Progress from "./Progress/Progress";
 import Saved from "./Saved/Saved";
 import History from "./History/History";
+
+import './Menu.css'
 
 const initPage = "progress";
 const initData = {
@@ -42,15 +44,14 @@ function Menu() {
         }));
     };
 
-    // updateStatus(1, "เสร็จสิ้น");
-
-    
-
     return ( 
         <div className="menu-container">
 
             <div className="title">
-                <i className="bi bi-caret-left-fill"></i>
+                {/* ลิ้งไปหน้า home */}
+                <Link to='/search' onClick={() => setTab('search')}>
+                    <i className="bi bi-caret-left-fill"></i>
+                </Link>
                 <h1>รายการ</h1>
             </div>
 
