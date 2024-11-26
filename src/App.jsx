@@ -2,6 +2,14 @@ import { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layouts/Layout/Layout";
 
+import "@fontsource/ibm-plex-sans"; // Normal weight
+import "@fontsource/ibm-plex-sans/400.css"; // น้ำหนักปกติ
+import "@fontsource/ibm-plex-sans/700.css"; // น้ำหนักหนา
+
+import 'bootstrap/dist/css/bootstrap.min.css'; // โหลด Bootstrap ก่อน
+import './App.css'; // โหลด CSS ของคุณทีหลัง
+
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -79,8 +87,8 @@ function App() {
 
                       {/* Call page */}
                       <Route path="/call" element={<Call />}>
-                        <Route path="details" element={<Details />} />
                         <Route path="offer" element={<Offer />} />
+                        <Route path="details" element={<Details />} />
                       </Route>
 
                       {/* Summon page */}
@@ -94,7 +102,7 @@ function App() {
                     {/* User */}
                     {/* < Route path="/user" element={<Created_Position />}> */}
                           <Route path="created_position" element={<Created_Position />} />
-                          <Route path="map_created_position" element={<Map_Created_Position />} />     
+                          <Route path="/map_created_position" element={<Map_Created_Position />} />     
                     {/* </Route> */}
                           
                 

@@ -2,4 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "@fontsource/ibm-plex-sans"; /* Import font with default weights and styles */
+
 

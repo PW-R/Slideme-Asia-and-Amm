@@ -1,0 +1,71 @@
+/* 3 ปุ่ม ตำแหน */
+.homepage-3button {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1rem;
+    margin: 1.5rem;
+    margin-top: 2rem;
+}
+
+.map-2button-container {
+    position: relative; /* ทำให้คอนเทนเนอร์นี้จัดตำแหน่งไอคอนได้ */
+    width: fit-content; /* ขนาดปรับตามเนื้อหา */
+}
+
+.map-2button {
+    width: 100px;
+    height: 36px; /* กำหนดความสูงของปุ่ม */
+    font-size: 13px;
+    color: #000000;
+    background-color: #66DC82;
+    border-radius: 5px; 
+    padding: 0.4rem;
+    border: none;
+    text-overflow: ellipsis; /* แสดงข้อความที่ยาวเกินไปด้วย ... */
+    white-space: nowrap; /* ห้ามข้อความเปลี่ยนบรรทัด */
+    overflow: hidden; /* ซ่อนข้อความที่เกินขนาด */
+    display: flex;
+    align-items: center; /* จัดข้อความให้ตรงกลางในแนวตั้ง */
+    justify-content: flex-start; /* จัดข้อความให้เริ่มจากซ้าย */
+    cursor: pointer; /* แสดง cursor เมื่อ hover */
+    text-align: left; /* จัดข้อความให้เริ่มจากซ้าย */
+    position: relative; /* ทำให้ปุ่มจัดการตำแหน่งของข้อความ */
+    z-index: 2; /* ทำให้ปุ่มอยู่ด้านหน้าของไอคอน */
+}
+
+.map-2button-container  i {
+    font-size: 24px; /* ขนาดไอคอน */
+    color: black; /* สีที่จางเพื่อให้เป็นพื้นหลัง */
+    position: absolute; /* จัดตำแหน่งไอคอน */
+    top: -17px   ; /* ชิดด้านบน */
+    right: -15px ; /* ชิดด้านขวา */
+    z-index: 1; /* ไอคอนอยู่ด้านหลังปุ่ม */
+    pointer-events: none; /* ไม่ให้ไอคอนรับเหตุการณ์ */
+}
+
+
+.map-1button {
+    width: 100px;
+    height: 36px; /* กำหนดความสูงของปุ่ม */
+    font-size: 11px;
+    color: #000000;
+    background-color: #66DC82;
+    border-radius: 5px;
+    padding: 0.4rem;
+    border: none;
+    text-overflow: ellipsis; /* แสดงข้อความที่ยาวเกินไปด้วย ... */
+    white-space: nowrap; /* ห้ามข้อความเปลี่ยนบรรทัด */
+    overflow: hidden; /* ซ่อนข้อความที่เกินขนาด */
+    display: flex;
+    align-items: center; /* จัดข้อความให้ตรงกลางในแนวตั้ง */
+    justify-content: center; /* จัดข้อความให้เริ่มจากซ้าย */
+    cursor: pointer; /* แสดง cursor เมื่อ hover */
+    text-align: left; /* จัดข้อความให้เริ่มจากซ้าย */
+    border: none; /* ไม่มีขอบ */
+}
+
+.map-1button i {
+    font-size: 18px; /* ปรับขนาดไอคอน */
+    display: flex;
+    align-items: center; /* จัดไอคอนให้อยู่กลางในแนวตั้ง */
+}

@@ -112,8 +112,6 @@ input[type="text"] {
   z-index: 5000;
 }
 
-
-
 .selected-location {
   display: flex; /* ใช้ Flexbox สำหรับจัดตำแหน่ง */
   flex-direction: column; /* จัดลูกไปในแนวตั้ง */
@@ -124,13 +122,13 @@ input[type="text"] {
 }
 
 .selected-location h2 {
-  font-weight: bold;
+  font-weight: 600 !important;
   margin: 0; /* ลบ margin ที่อาจทำให้ไม่อยู่ตรงกลาง */
 }
 
 .selected-location p {
   color: black;
-  font-weight: lighter;
+  font-weight: 400 !important;    
   margin: 0; /* ลบ margin ที่อาจทำให้ไม่อยู่ตรงกลาง */
 }
 

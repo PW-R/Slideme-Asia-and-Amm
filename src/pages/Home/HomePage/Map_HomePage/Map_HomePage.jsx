@@ -1,14 +1,22 @@
 import { useState, useEffect, useRef } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+
 import { usePosition } from "../../../../data/PositionContext";
+import { usehomePagePosition } from "../../../../data/PositionContext";      
+
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
+
 import "./Map_HomePage.css";
 
 function Map_HomePage() {
   const [position, setPosition] = useState(null);
   const [address, setAddress] = useState("");
+
+  const { homePagePosition, setHomePagePosition } = usehomePagePosition(); // ใช้ state เฉพาะสำหรับหน้านี้
+  const { setHomePageOrigin, setHomePageDestination } = usePosition();
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const mapRef = useRef(null);
@@ -98,19 +106,35 @@ function Map_HomePage() {
     return null;
   };
 
+  // const handleConfirm = () => {
+  //   if (!position) {
+  //     alert("กรุณาเลือกตำแหน่งก่อนยืนยัน");
+  //     return;
+  //   }
+
+  //   if (searchType === "origin") {
+  //     setOrigin(position);
+  //   } else if (searchType === "destination") {
+  //     setDestination(position);
+  //   }
+  //   navigate("/homepage");
+  // };
+
   const handleConfirm = () => {
     if (!position) {
-      alert("กรุณาเลือกตำแหน่งก่อนยืนยัน");
-      return;
+        alert("กรุณาเลือกตำแหน่งก่อนยืนยัน");
+        return;
     }
-
     if (searchType === "origin") {
-      setOrigin(position);
-    } else if (searchType === "destination") {
-      setDestination(position);
-    }
+      setHomePageOrigin({ position, address }); // บันทึกตำแหน่งต้นทาง
+  } else if (searchType === "destination") {
+      setHomePageDestination({ position, address }); // บันทึกตำแหน่งปลายทาง
+  }
+    setHomePagePosition(position); // เก็บตำแหน่งเฉพาะหน้านี้
+    
+    alert("ตำแหน่งถูกบันทึกแล้ว");
     navigate("/homepage");
-  };
+};
 
   const handleSelectResult = (lat, lon) => {
     setPosition([lat, lon]);

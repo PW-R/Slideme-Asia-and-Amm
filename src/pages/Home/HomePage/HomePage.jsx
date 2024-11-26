@@ -1,9 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { Link,Outlet} from 'react-router-dom';
-import { Button, Carousel } from "react-bootstrap";  
-
-import { useNavigate } from "react-router-dom";
-import { usePosition } from "../../../data/PositionContext";
+import { useState } from "react";
+import { Link } from 'react-router-dom'; 
 
 import "./HomePage.css";  
 
@@ -12,21 +8,29 @@ function HomePage() {
     const [tab, setTab] = useState('map-created-position'); 
 
     return (
-        <div className="search-container">
+        <div className="homepage-container">
             <div className="title">
-                <h1>สวัสดี เจน</h1>
+                <h1>Home</h1>
             </div>
 
-            <div className="created-button">
-                <Link to='/map_homepage'>
-                    <button 
-                        className={'btn ' + (tab === 'map_homepage' ?  'btn-success' :
-                        'btn-outline-success')}
-                        onClick={() => setTab('map_homepage')}
-                        >
-                        ตำแหน่งที่สร้างไว้
+            <div className="homepage-3button">
+                <div className="map-2button-container">
+                    <i class="bi bi-clock-history"></i>
+                    <button className="map-2button">
+                      Homecar-อู่รถมั่นคง
                     </button>
-                </Link>
+                </div>
+                <div className="map-2button-container">
+                    <i class="bi bi-clock-history"></i>
+                    <button className="map-2button">
+                      Homecar-ร้านจันทร์ฉาย
+                    </button>
+                </div>
+                <div>
+                    <button className="map-1button">
+                        <i class="bi bi-plus-circle"></i>
+                    </button>
+                </div>
             </div>
 
             <div className="go-search">

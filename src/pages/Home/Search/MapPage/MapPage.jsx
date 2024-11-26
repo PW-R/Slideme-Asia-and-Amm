@@ -9,6 +9,8 @@ import "./MapPage.css";
 function MapPage() {
   const [position, setPosition] = useState(null);
   const [address, setAddress] = useState("");
+  const { createdPosition, setCreatedPosition } = usePosition(); // ใช้ state เฉพาะสำหรับหน้านี้
+
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const mapRef = useRef(null);
@@ -109,6 +111,8 @@ function MapPage() {
     } else if (searchType === "destination") {
       setDestination(position);
     }
+    // setOrigin(position); 
+    // alert("ตำแหน่งต้นทางถูกบันทึกแล้ว");
     navigate("/search");
   };
 

@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@fontsource/ibm-plex-sans": "^5.1.0",
+    "@fontsource/roboto": "^5.1.0",
     "@react-google-maps/api": "^2.20.3",
     "@vis.gl/react-google-maps": "^1.4.0",
     "axios": "^1.7.7",
@@ -27,6 +29,7 @@
     "react-native-web-maps": "^0.3.0",
     "react-router-dom": "^6.28.0",
     "react-scripts": "^5.0.1",
+    "sass": "^1.81.0",
     "typescript": "^4.9.5"
   },
   "devDependencies": {

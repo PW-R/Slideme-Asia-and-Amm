@@ -1,23 +1,29 @@
+import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { Button, Offcanvas } from "react-bootstrap";
+
+import { usePosition } from "../../../data/PositionContext";
+
 import './Progress.css'
-import { Link } from 'react-router-dom';
 
-const data = {
-    progress: null, // หรือ []
-};
+function Progress({ data, selectedDriver }) {
 
-function Progress({data}) {
+    const location = useLocation();
+    const selectedOffer = location.state?.selectedOffer || null;
 
-    if (!Array.isArray(data) || data.length === 0 ) {
-        return <p>ไม่มีข้อมูล</p>; // แสดงข้อความเมื่อ data ไม่ใช่อาร์เรย์
-    }
+  // ถ้าไม่มี selectedOffer ให้แสดงข้อความ
+  if (!selectedOffer) {
+    return <p>ไม่มีข้อมูลการเรียกรถสไลด์</p>;
+  }
+
 
     return ( 
 
         <div className="container">
 
-            {data.map((item) => (
+            {/* {data.map((item) => ( */}
 
-                <div className='progress-tab' key={item.id}>
+                <div className='progress-tab' >
 
                     <div className='profile-driver'>
                         <i class="bi bi-geo-alt-fill"></i>
@@ -25,23 +31,23 @@ function Progress({data}) {
                     </div>
 
                     <div className='detail'>
-                        <h1>{item.title}</h1>
-                        <p>{item.date}</p>
-                        <p>฿{item.price.toLocaleString()}</p>
+                        <h1>{selectedOffer?.workplace || "ไม่มีชื่อร้าน"}</h1>
+                        <p>{selectedOffer?.serviceDate || "ไม่มีวันที่"}</p>
+                        <p>฿{selectedOffer?.servicePrice || "ไม่มีราคา"}</p>
                     </div>
 
                     <div className='in_progress'>
                         <Link 
                             to="/tracking"
                             onClick={() => setTab('tracking')}>
-                            <p>{item.status}</p>
+                            <p>กำลังดำเนินการ</p>
                         </Link>
                         {/* <p>{item.status}</p> */}
                     </div>
                     
                 </div>
 
-            ))}
+            {/* ))} */}
 
         </div>
      );

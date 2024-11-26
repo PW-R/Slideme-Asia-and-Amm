@@ -1,3 +1,17 @@
+@import "@fontsource/ibm-plex-sans"; /* Import font with default weights and styles */
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Sans+Thai:wght@100;200;300;400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Prompt:wght@200;400&display=swap');
+
+body {
+  font-family: 'IBM Plex Sans Thai', sans-serif !important;
+}
+
+:root {
+  --bs-font-sans-serif: 'IBM Plex Sans', sans-serif;
+}
+
+
+
 .body-container {
   display: flex;
   justify-content: center;
@@ -23,7 +37,7 @@
   position: relative; /* เปลี่ยนจาก fixed เป็น relative เพื่อให้ title อยู่ภายใน .app-container */
   background-color: #0dc964;
   box-shadow: 0 0 10px #969696;
-  height: 120px;
+  height: 125px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -33,7 +47,8 @@
 }
 
 .title h1 {
-  font-weight: lighter;
+  font-size: 36px;
+  font-weight: 400;        
   margin: 0;
   color: #ffffff;
 }
@@ -53,7 +68,7 @@
   width: 100%; /* ให้กว้างเต็มกรอบ */
   background-color: #0dc964;
   box-shadow: 0 0 10px #969696;
-  height: 120px;
+  height: 125px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -63,7 +78,8 @@
 }
 
 .title-map h1 {
-  font-weight: lighter;
+  font-size: 36px;
+  font-weight: 400;
   margin: 0;
   color: #ffffff;
 }

@@ -4,18 +4,21 @@ import { Button, Offcanvas } from "react-bootstrap";
 
 import Map from "./Map/Map";
 import L from 'leaflet';
+
 import { Outlet } from 'react-router';
 import { usePosition } from "../../../data/PositionContext";
 
 import './Call.css';
 
 function Call() {
-  const [tab, setTab] = useState('details');
+  const [tab, setTab] = useState('offer');
   const [show, setShow] = useState(true);
-  const { origin, destination } = usePosition();
+  const { origin, destination, driver } = usePosition();
 //   const [isRouteReady, setIsRouteReady] = useState(false); // Track if route is ready
     
   const navigate = useNavigate();
+  const location = useLocation();
+
 
 //   const handleShow = () => setShow(true);
 //   const handleClose = () => setShow(false);
@@ -27,21 +30,47 @@ function Call() {
 
   const handleShow = () => {
     setShow(true);
-    setTab('details');
+    setTab('offer');
   };
 
   const handleClose = () => setShow(false);
 
-  const handleTabChange = (newTab) => {
-    setTab(newTab);
-    navigate(`/call/${newTab}`);
-  };
+  // useEffect(() => {
+  //   if (tab === 'offer') {      
+  //     navigate('/call/offer');
+  //   } else if (tab === 'details') {
+  //     navigate('/call/details');
+  //   }
+  // }, [navigate, tab]);
+  
+  // const handleTabChange = (newTab) => {
+  //   setTab(newTab); // เปลี่ยนค่า tab
+  // };
 
   useEffect(() => {
-    if (tab === 'details') {
-      navigate('/call/details');
+    // ถ้ายังไม่มี path ที่กำหนด (อยู่ในหน้า `/call` โดยตรง) ให้เปลี่ยนไป `/call/offer`
+    if (location.pathname === "/call") {
+      navigate("/call/offer");
     }
-  }, [navigate, tab]);
+  }, [location.pathname, navigate]);
+
+  useEffect(() => {
+    if (location.pathname.includes("/call/details")) {
+      setTab("details");
+    } else if (location.pathname.includes("/call/offer")) {
+      setTab("offer");
+    }
+  }, [location.pathname]);
+  
+  const handleTabChange = (newTab) => {
+    setTab(newTab);
+    if (newTab === "offer") {
+      navigate("/call/offer");
+    } else if (newTab === "details") {
+      navigate("/call/details");
+    }
+  };
+  
   
 
   useEffect(() => {
@@ -93,18 +122,19 @@ function Call() {
 
       <div className="call-tab">
         <div className="two-button">
-          <button
-            className={`nav-link ${tab === 'details' ? 'active' : ''}`}
-            onClick={() => handleTabChange('details')}
-            >
-            รายละเอียด
-          </button>
 
           <button
             className={`nav-link ${tab === 'offer' ? 'active' : ''}`}
             onClick={() => handleTabChange('offer')}
             >
             Offer
+          </button>
+          
+          <button
+            className={`nav-link ${tab === 'details' ? 'active' : ''}`}
+            onClick={() => handleTabChange('details')}
+            >
+            รายละเอียด
           </button>
         </div>
         
