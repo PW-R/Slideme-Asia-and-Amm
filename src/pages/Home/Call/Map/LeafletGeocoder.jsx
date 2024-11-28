@@ -1,14 +1,15 @@
 import { useEffect } from "react";
-import L from "leaflet";
+
 import { useMap } from "react-leaflet";
+import L from "leaflet";
 import "leaflet-control-geocoder";
-import { useRouteInfo } from "../../../../data/PositionContext"; // เข้าถึง Context เพื่อเก็บข้อมูล
+
+import { useRouteInfo } from "../../../../data/PositionContext"; 
 
 const LeafletGeocoder = ({ origin, destination }) => {
   const map = useMap();
-  const { setRouteInfo } = useRouteInfo(); // ฟังก์ชันในการตั้งค่า routeInfo
+  const { setRouteInfo } = useRouteInfo(); 
 
-  // ไอคอนสำหรับต้นทาง
   const originIcon = L.divIcon({
     className: "leaflet-div-icon",
     html: `<div style="background-color: red; width: 32px; height: 32px; border-radius: 50%; border: 2px solid white;"></div>`,
@@ -17,7 +18,6 @@ const LeafletGeocoder = ({ origin, destination }) => {
     popupAnchor: [0, -32],
   });
 
-  // ไอคอนสำหรับปลายทาง
   const customIcon = L.divIcon({
     className: "leaflet-div-icon",
     html: `
@@ -32,14 +32,12 @@ const LeafletGeocoder = ({ origin, destination }) => {
 
   useEffect(() => {
     if (origin && destination) {
-      // ลบ Routing Control เก่า (ถ้ามี)
       map.eachLayer((layer) => {
         if (layer.options?.name === "RoutingControl") {
           map.removeLayer(layer);
         }
       });
 
-      // เพิ่ม Routing Control ใหม่
       const routingControl = L.Routing.control({
         waypoints: [
           L.latLng(origin[0], origin[1]),
@@ -53,31 +51,30 @@ const LeafletGeocoder = ({ origin, destination }) => {
         addWaypoints: false,
         draggableWaypoints: false,
         fitSelectedRoutes: true,
-        showAlternatives: false, // ปิดการแสดงเส้นทางอื่น
+        showAlternatives: false, 
         name: "RoutingControl",
-        show: false, // ซ่อน Panel ที่แสดงข้อมูลระยะทางและเวลา
-        createMarker: () => null, // ไม่ให้ leaflet สร้าง marker เอง
+        show: false, 
+        createMarker: () => null, 
       });
 
-      // เมื่อคำนวณเส้นทางเสร็จสิ้น
       routingControl.on("routesfound", (event) => {
         const route = event.routes[0];
-        const distance = route.summary.totalDistance / 1000; // ระยะทางเป็นกิโลเมตร
-        const time = route.summary.totalTime / 60; // เวลาเป็นนาที
+        const distance = route.summary.totalDistance / 1000; 
+        const time = route.summary.totalTime / 60; 
 
         // ตั้งค่า routeInfo ใน Context
         setRouteInfo({
-          distance: distance.toFixed(2), // ปรับให้เป็นทศนิยม 2 ตำแหน่ง
-          time: time.toFixed(0), // ปรับให้เป็นจำนวนเต็ม
+          distance: distance.toFixed(2), 
+          time: time.toFixed(0),
         });
       });
 
-      routingControl.addTo(map); // เพิ่ม Routing Control ลงในแผนที่
+      routingControl.addTo(map); 
 
       // ซ่อนกรอบที่แสดงข้อมูล
       const controlContainer = routingControl.getContainer();
       if (controlContainer) {
-        controlContainer.style.display = "none"; // ซ่อนกรอบข้อมูล
+        controlContainer.style.display = "none"; 
       }
 
       // เพิ่ม Marker สำหรับต้นทางและปลายทางพร้อมกับไอคอนที่กำหนดเอง
@@ -93,8 +90,7 @@ const LeafletGeocoder = ({ origin, destination }) => {
         map.removeControl(routingControl);
       };
     }
-  }, [map, origin, destination, setRouteInfo]); // ต้องมี setRouteInfo ใน dependencies
-
+  }, [map, origin, destination, setRouteInfo]); 
   return null;
 };
 

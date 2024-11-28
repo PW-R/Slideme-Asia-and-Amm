@@ -2,51 +2,48 @@ import { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
 import { fetchDriverforUser } from "../../../data/DriverforUser"; // สมมติว่า fetchDriverforUser เป็นฟังก์ชันที่ดึงข้อมูล
 
-
 import './History.css'
 
 const initPage = "home";
 
 const data = {
-    progress: null, // หรือ []
+    progress: null, 
 };
 
 function History({data}) {
-    const [shuffledData, setShuffledData] = useState([]); // เก็บข้อมูลที่สุ่มแล้ว
+    const [shuffledData, setShuffledData] = useState([]); 
 
-    const [driverData, setDriverData] = useState([]);  // เก็บข้อมูลที่ดึงมา
+    const [driverData, setDriverData] = useState([]);  
     const [tab, setTab] = useState(initPage);
 
-    // ใช้ useEffect เพื่อดึงข้อมูลจาก fetchDriverforUser
     useEffect(() => {
         const fetchData = async () => {
-            const dataFromApi = await fetchDriverforUser();  // ดึงข้อมูลจากฟังก์ชัน
-            setDriverData(dataFromApi);  // เก็บข้อมูลที่ดึงมาใน state
+            const dataFromApi = await fetchDriverforUser();  
+
+            setDriverData(dataFromApi);  
         };
 
-        fetchData();  // เรียกใช้งานฟังก์ชัน
-    }, []);  // [] ทำให้ run ครั้งเดียวเมื่อ component mount
+        fetchData(); 
+    }, []);
 
     useEffect(() => {
         if (driverData.length > 0) {
-            const shuffled = driverData.sort(() => Math.random() - 0.5); // สุ่มข้อมูล
-            setShuffledData(shuffled.slice(0, 2)); // เก็บแค่ 2 ข้อมูลแรกหลังจากสุ่ม
+            const shuffled = driverData.sort(() => Math.random() - 0.5); 
+            setShuffledData(shuffled.slice(0, 2)); 
         }
-    }, [driverData]);  // รันเมื่อ driverData เปลี่ยนแปลง
+    }, [driverData]);  
 
     if (shuffledData.length === 0) {
-        return <p>ไม่มีข้อมูล</p>; // แสดงข้อความเมื่อไม่มีข้อมูล
+        return <p>ไม่มีข้อมูล</p>; 
     }
-
 
     return ( 
         <div className="container">
-            {shuffledData.map((item) => ( // แสดงข้อมูลที่สุ่มมา
-            // {driverData.slice(0, 2).map((item) => ( // ใช้ slice เพื่อแสดงแค่ 2 ข้อมูล
+            {shuffledData.map((item) => ( 
                 <div className='history-tab' key={item.id}>
 
-                    <div className='profile-driver'>
-                        <div className="circle-image"></div>
+                    <div className='progress-profile-driver'>
+                        <img src="driver.png" alt="โปรไฟล์คนขับ" />
                         <i class="bi bi-check-circle-fill"></i>
                     </div>
 
@@ -61,14 +58,10 @@ function History({data}) {
                             <p>book again</p>
                         </Link>
                     </div>
-                    
                 </div>
             ))}
-
-
         </div>
-
-     );
+    );
 }
 
 export default History;

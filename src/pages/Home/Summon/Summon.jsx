@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation, Link, useNavigate } from 'react-router-dom';
 import { Button, Carousel } from "react-bootstrap";
+
 import { usePosition } from "../../../data/PositionContext";
+
 import './Summon.css'
 
 function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
@@ -11,13 +13,11 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
     const [destinationAddress, setDestinationAddress] = useState(null);
   
     const location = useLocation();
-    // const { setSelectedOffer } = location.state || {};  // Getting selectedOffer from location state
     const [selectedOffer, setSelectedOffer] = useState(null);
 
     const total = selectedOffer?.servicePrice - selectedOffer?.discount;
-    const navigate = useNavigate();  // Using navigate for programmatic navigation
+    const navigate = useNavigate();  
 
-    // ฟังก์ชันเพื่อดึงที่อยู่จาก Lat/Lng
     const fetchAddress = async (lat, lon) => {
         try {
             const response = await fetch(
@@ -31,7 +31,6 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
         }
     };
 
-    // อัปเดตที่อยู่เมื่อ origin หรือ destination เปลี่ยน
     useEffect(() => {
         if (origin) {
             fetchAddress(origin[0], origin[1]).then(setOriginAddress);
@@ -44,22 +43,12 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
         }
     }, [destination]);
 
-    // const handleGoToInformation = () => {
-    //     // Navigate to the Information page and pass selectedOffer through state
-    //     navigate('/information', {
-    //         state: { selectedOffer }  
-    //     });
-    // };
-
     const handleGoToInformation = () => {
-        // เก็บข้อมูล selectedOffer ใน sessionStorage
         sessionStorage.setItem('selectedOffer', JSON.stringify(selectedOffer));
         navigate('/information', {
             state: { selectedOffer }  
         });
     };
-
-        // ดึงข้อมูล selectedOffer จาก sessionStorage ถ้ามี
         useEffect(() => {
             const storedOffer = sessionStorage.getItem('selectedOffer');
             if (storedOffer) {
@@ -74,22 +63,19 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
         }, [location.state]);
 
         const handleGoToTracking = () => {
-            // เก็บข้อมูล selectedOffer ใน sessionStorage
             sessionStorage.setItem('selectedOffer', JSON.stringify(selectedOffer));
             navigate('/tracking', {
-                state: { selectedOffer }, // ส่งข้อมูลไปยังหน้า Tracking
+                state: { selectedOffer }, 
             });
         };
     
-        
     return ( 
         <div className="summon-container">
             <div className="title">
                 <Link 
                     to='/call'
-                    onClick={() => setTab('call')}
-                >
-                    <i className="bi bi-caret-left-fill"></i>
+                    onClick={() => setTab('call')}>
+                    <i class="bi bi-chevron-left"></i>
                 </Link>
                 <h1>เรียกรถสไลด์</h1>
             </div>
@@ -112,12 +98,14 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
 
             {/* 3 ปุ่ม */}
             <div className='summon-3btn'>
-                <button onClick={handleGoToInformation}>
+                <button 
+                        className={tab === 'information' ? 'btn btn-success' : 'btn btn-outline-success'}
+                    onClick={handleGoToInformation}>
                     ข้อมูลผู้ให้บริการ
                 </button>
                 <Link>
                     <button 
-                        className={tab === 'information' ? 'btn btn-success' : 'btn btn-outline-success'}
+                        className="btn btn-success"
                         onClick={() => window.location.href = 'tel:+0682538888'}
                     >
                         โทรหาผู้ให้บริการ
@@ -125,8 +113,7 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
                 </Link>
                 <Link to='/chat'>
                     <button 
-                        className={tab === 'information' ? 'btn btn-success' : 'btn btn-outline-success'}
-                    >
+                        className="btn btn-success">
                         ส่งข้อความ
                     </button>
                 </Link>
@@ -150,22 +137,19 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
             {/* detail */}
             <div className="summon-detail">
                 <p>ค่าบริการ ฿{selectedOffer?.servicePrice}</p>
-                <p>ส่วนลด 
-                    <span className="discount">-฿{selectedOffer?.discount}</span> 
-                </p>
+                <p>ส่วนลด <span className="discount">-฿{selectedOffer?.discount}</span></p>
                 <p>รวมทั้งหมด ฿{total} </p>
-                <p>สถานนะ
-                    <span className="status">รอการชำระเงิน</span> 
-                </p>
+                <p>สถานนะ <span className="status">รอการชำระเงิน</span></p>
             </div>
 
             {/* 2 ปุ่ม */}
             <div className="summon-btn">
+
+                {/* แก้ ลิ้งไปหน้าชำระเงิน */}
                 <Link to='/tracking'>
                     <button 
                         className={'btn ' + (tab === 'tracking' ?  'btn-success' : 'btn-outline-success')}
-                        onClick={handleGoToTracking }
-                    >
+                        onClick={handleGoToTracking }>
                         ชำระเงิน
                     </button>
                 </Link>
@@ -174,8 +158,7 @@ function Summon({ currentLocation, priceDetails, serviceInfo, ...props }) {
                     <button 
                         className={'btn ' + (tab === '/call' ?  'btn-danger' : 'btn-outline-danger')}
                         onClick={() => setTab('/call')}
-                        style={{backgroundColor: tab === '/call' ? '#ff3636' : '#ff3636'}}
-                    >
+                        style={{backgroundColor: tab === '/call' ? '#ff3636' : '#ff3636'}}>
                         ยกเลิก
                     </button>
                 </Link>

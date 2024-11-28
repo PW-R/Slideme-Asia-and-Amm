@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { usePosition } from "../../../data/PositionContext";
 
 import "./Search.css";
@@ -37,7 +36,6 @@ function Search() {
       fetchAddress(destination[0], destination[1]).then(setDestinationAddress);
     }
   }, [destination]);
-  
 
   // ฟังก์ชันไปที่หน้า MapPage
   const handleNavigateToMap = (type) => {
@@ -48,6 +46,7 @@ function Search() {
     <div className="search-container">
       
       <div className="title">
+
         {/* ลิ้งไปหน้า home */}
           {/* <Link 
               to='/search'
@@ -55,7 +54,8 @@ function Search() {
               >
               <i className="bi bi-caret-left-fill" ></i>
           </Link> */}
-        <i className="bi bi-caret-left-fill" ></i>
+
+        <i class="bi bi-chevron-left"></i>
         <h1>ค้นหาสถานที่</h1>
       </div>
 
@@ -96,7 +96,6 @@ function Search() {
           ค้นหา Slide me
         </button>
       </div>
-      
     </div>
   );
 }

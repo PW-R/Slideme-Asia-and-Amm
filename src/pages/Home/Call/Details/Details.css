@@ -3,7 +3,6 @@
     height: auto;
     border-radius: 0.5rem;
     text-align: center;
-    /* padding: 1rem; */
 }
 
 .details-location-container {
@@ -13,22 +12,20 @@
     margin: 0 1.5rem 0rem 1.5rem;
 }
 
-/* details-tab */
 .details-tab {
-    height: auto; /* ปรับความสูงให้เหมาะสมกับเนื้อหาภายใน */
-    position: relative; /* เพื่อให้สามารถใช้งาน absolute positioning กับปุ่ม */
+    height: auto;
+    position: relative;
     display: grid;
     grid-template-columns: 3fr 1fr;
     margin: 0 1.5rem 0.5rem 1.5rem;
 }
 
 .details-details-2 {
-    /* margin: 1.5rem 0.5rem 0.5rem 0.5rem; */
-    display: flex; /* ใช้ Flexbox */
-    flex-direction: column; /* จัดเรียงองค์ประกอบในแนวตั้ง */
-    align-items: flex-start; /* ชิดซ้ายในแนวนอน */
-    gap: 0.5rem; /* ระยะห่างระหว่าง i และ p */
-    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
     margin-left: 3rem;
 }
 
@@ -39,7 +36,7 @@
 }
 
 .details-details-2 i {
-    font-size: 25px;
+    font-size: 20px;
     padding-right: 10px;
 }
 
@@ -49,48 +46,45 @@
 }
 
 .car2-image {
-    display: flex; /* ใช้ Flexbox */
-    justify-content: center; /* จัดกึ่งกลางในแนวนอน */
-    align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
-    flex-direction: column; /* จัดเรียงพารากราฟในแนวตั้ง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 80px;
     height: 40px;
     padding-left: 2.5rem;
     padding-bottom: 0.5rem;
-  }
-  
-  .car2-info {
-    display: flex; /* ใช้ Flexbox */
-    justify-content: center; /* จัดกึ่งกลางในแนวนอน */
-    align-items: center; /* จัดกึ่งกลางในแนวตั้ง */
-    flex-direction: column; /* จัดเรียงพารากราฟในแนวตั้ง */
-  }
-  
-  .car2-info p {
+}
+
+.car2-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.car2-info p {
     font-size: 16px;
     color: #647A75;
     margin: 0;
     line-height: 1.5;
-  }
-
-/* button */
-.details-button {
-    position: absolute;
-    bottom: 1.5rem; /* ตั้งปุ่มให้อยู่ห่างจากด้านล่างของ container */
-    left: 50%;
-    transform: translateX(-50%); /* จัดกึ่งกลางในแนวนอน */
-    z-index: 10; /* ทำให้ปุ่มอยู่ด้านบนสุด */
 }
 
-.details-button .btn {
+.details-button {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.details-button button {
     width: 120px;
     height: 28px;
     border-color: #0dc964;
     background-color: #0dc964;
     border-radius: 50px;
     font-size: 16px;
-    padding: 0; 
+    padding: 0;
     color: white;
-  }
-
-
+}

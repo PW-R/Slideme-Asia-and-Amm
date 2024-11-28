@@ -41,6 +41,9 @@ export const PositionProvider = ({ children }) => {
     const [currentPosition, setCurrentPosition] = useState(null);
     const [saveCallback, setSaveCallback] = useState(null); // เพิ่ม state สำหรับ saveCallback
 
+    const [Sorigin, SsetOrigin] = useState(null);
+    const [Sdestination, SsetDestination] = useState(null);
+    
     return (
         <PositionContext.Provider value={{
             origin, setOrigin, 
@@ -56,7 +59,9 @@ export const PositionProvider = ({ children }) => {
             createdDestination, setCreatedDestination,
             currentPosition, setCurrentPosition,
             callback, setCallback,
-            saveCallback, setSaveCallback
+            saveCallback, setSaveCallback,
+            Sorigin, SsetOrigin, 
+            Sdestination, SsetDestination
         }}>
             <RouteInfoContext.Provider value={{ routeInfo, setRouteInfo }}>
                 <DriverContext.Provider value={{ selectedDriver, setSelectedDriver,}}>
@@ -70,46 +75,3 @@ export const PositionProvider = ({ children }) => {
 };
 
 PositionContext.js 
-
-
-
-// import { createContext, useContext, useState } from "react";
-
-// const PositionContext = createContext();
-
-// export const PositionProvider = ({ children }) => {
-//   const [origin, setOrigin] = useState(null);
-//   const [destination, setDestination] = useState(null);
-//   const [routeInfo, setRouteInfo] = useState(null);
-//   const [createdPosition, setCreatedPosition] = useState([]); // เพิ่ม state สำหรับตำแหน่งที่สร้าง
-
-//   return (
-//     <PositionContext.Provider
-//       value={{
-//         origin,
-//         setOrigin,
-//         destination,
-//         setDestination,
-//         routeInfo,
-//         setRouteInfo,
-//         createdPosition,
-//         setCreatedPosition, // ส่งออก setCreatedPosition ด้วย
-//       }}
-//     >
-//       {children}
-//     </PositionContext.Provider>
-//   );
-// };
-
-// // ฟังก์ชันสำหรับเข้าถึง Context
-// export const usePosition = () => useContext(PositionContext);
-// export const useRouteInfo = () => {
-//   const { routeInfo, setRouteInfo } = useContext(PositionContext);
-//   return { routeInfo, setRouteInfo };
-// };
-// export const useCreatedPosition = () => {
-//   const { createdPosition, setCreatedPosition } = useContext(PositionContext);
-//   return { createdPosition, setCreatedPosition };
-// };
-
-

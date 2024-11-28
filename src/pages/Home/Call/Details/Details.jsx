@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { Button } from "react-bootstrap";
 import { useNavigate, useLocation } from 'react-router-dom';
+import { Button } from "react-bootstrap";
+
 import { usePosition } from "../../../../data/PositionContext";
 import { useRouteInfo } from "../../../../data/PositionContext";
+
 import './Details.css';
 
 function Details() {
@@ -46,7 +48,6 @@ function Details() {
   // ฟังก์ชันที่จะใช้เมื่อกดปุ่ม "เรียกทันที"
   const handleGoToSummon = () => {
     if (selectedOffer) {
-      // ส่งข้อมูลคนขับไปยังหน้า summon
       navigate('/summon', {
         state: { selectedOffer }
       });
@@ -76,6 +77,7 @@ function Details() {
           {/* ข้อมูลเส้นทาง */}
           <div className="details-tab">
             <div className="details-details-2">
+              <p style={{ fontWeight: "bold" }} >{selectedOffer?.slideCarType || "ไม่มีประเภทของรถสไลด์"}</p>
               <p>
                 <i className="bi bi-clock-fill"></i>
                 {routeInfo?.time ? `${routeInfo.time} นาที` : "กำลังคำนวณ..."}

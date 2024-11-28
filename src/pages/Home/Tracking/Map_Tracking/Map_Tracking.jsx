@@ -1,12 +1,12 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { useEffect, useRef, useState } from "react";
-import { usePosition } from "../../../../data/PositionContext";
-
 
 import LeafletGeocoder from "../../Call/Map/LeafletGeocoder";
 import LeafletRoutingMachine from "../../Call/Map/LeafletRoutingMachine";
 import L from "leaflet";
 import "leaflet-routing-machine";
+
+import { usePosition } from "../../../../data/PositionContext";
 
 import "./Map_Tracking.css";
 
@@ -14,10 +14,9 @@ import "./Map_Tracking.css";
 function Map_Tracking() {
   const { origin, destination } = usePosition();
   const mapRef = useRef(null);
-  const [loadingRoute, setLoadingRoute] = useState(true); // สถานะการโหลดเส้นทาง
-  const [routeError, setRouteError] = useState(null); // ข้อผิดพลาดหากไม่สามารถโหลดเส้นทางได้
+  const [loadingRoute, setLoadingRoute] = useState(true); 
+  const [routeError, setRouteError] = useState(null);
 
-  // สร้างไอคอนสำหรับต้นทางเป็นวงกลมสีแดง
   const originIcon = L.divIcon({
     className: "leaflet-div-icon",
     html: `<div style="background-color: #F84C4C; width: 30px; height: 30px; border-radius: 50%; border: 2px solid white;"></div>`,
@@ -26,7 +25,6 @@ function Map_Tracking() {
     popupAnchor: [0, -32],
   });
 
-  // ไอคอนสำหรับปลายทาง
   const customIcon = L.divIcon({
     className: "leaflet-div-icon",
     html: `
@@ -42,32 +40,25 @@ function Map_Tracking() {
   useEffect(() => {
     if (origin && destination && mapRef.current) {
       const map = mapRef.current;
-
-      // รีเซ็ตค่าผลลัพธ์เก่า
       setLoadingRoute(true);
       setRouteError(null);
-
-      // ลบ routing control เดิม (ถ้ามี)
       map.eachLayer((layer) => {
         if (layer.options?.name === "RoutingControl") {
           map.removeLayer(layer);
         }
       });
-
-      // เพิ่ม Routing Control
       const routingControl = L.Routing.control({
         waypoints: [
           L.latLng(origin[0], origin[1]),
           L.latLng(destination[0], destination[1]),
         ],
-        routeWhileDragging: true, // สามารถลากเส้นทางได้
+        routeWhileDragging: true, 
         lineOptions: { styles: [{ color: "blue", weight: 6 }] },
-        createMarker: () => null, // ไม่ต้องสร้าง marker ซ้ำ
-        name: "RoutingControl", // ตั้งชื่อให้เส้นทาง
+        createMarker: () => null, 
+        name: "RoutingControl", 
       });
 
       routingControl.on("routesfound", (event) => {
-        // เมื่อค้นหาเส้นทางเสร็จแล้ว
         setLoadingRoute(false);
         if (event.routes.length === 0) {
           setRouteError("ไม่พบเส้นทาง");
@@ -75,7 +66,6 @@ function Map_Tracking() {
       });
 
       routingControl.on("routeerror", () => {
-        // หากมีข้อผิดพลาดในการคำนวณเส้นทาง
         setLoadingRoute(false);
         setRouteError("ไม่สามารถคำนวณเส้นทางได้");
       });
@@ -83,7 +73,6 @@ function Map_Tracking() {
       routingControl.addTo(map);
 
       return () => {
-        // ลบ routing control เมื่อ component ถูก unmount
         map.removeControl(routingControl);
       };
     }
@@ -91,7 +80,7 @@ function Map_Tracking() {
 
   return (
     <MapContainer
-      center={origin || [13.7367, 100.5238]} // Default: Bangkok
+      center={origin || [13.7367, 100.5238]} 
       zoom={13}
       style={{ height: "100%", width: "100%" }}
       whenCreated={(map) => (mapRef.current = map)}

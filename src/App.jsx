@@ -2,12 +2,12 @@ import { useState, useEffect } from "react";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./layouts/Layout/Layout";
 
-import "@fontsource/ibm-plex-sans"; // Normal weight
-import "@fontsource/ibm-plex-sans/400.css"; // น้ำหนักปกติ
-import "@fontsource/ibm-plex-sans/700.css"; // น้ำหนักหนา
+import "@fontsource/ibm-plex-sans"; 
+import "@fontsource/ibm-plex-sans/400.css"; 
+import "@fontsource/ibm-plex-sans/700.css"; 
 
-import 'bootstrap/dist/css/bootstrap.min.css'; // โหลด Bootstrap ก่อน
-import './App.css'; // โหลด CSS ของคุณทีหลัง
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css'; 
 
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -51,7 +51,6 @@ import { PositionProvider } from "./data/PositionContext";
 const initPage = "menu";
 
 function App() {
-
   const [tab, setTab] = useState('');
 
   useEffect(() => {
@@ -60,10 +59,8 @@ function App() {
 
   return (
     <PositionProvider>
-
       <div className='body-container'>
         <div className="app-container">
-          
         <HashRouter>
             <Routes>
                 < Route element={<Layout tab={tab} setTab={setTab} />}>
@@ -85,33 +82,29 @@ function App() {
                     <Route  path="homepage" element={<HomePage />} />
                     <Route path="/map_homepage" element={<Map_HomePage />} />
 
-                      {/* Call page */}
-                      <Route path="/call" element={<Call />}>
-                        <Route path="offer" element={<Offer />} />
-                        <Route path="details" element={<Details />} />
-                      </Route>
+                    {/* Call page */}
+                    <Route path="/call" element={<Call />}>
+                      <Route path="offer" element={<Offer />} />
+                      <Route path="details" element={<Details />} />
+                    </Route>
 
-                      {/* Summon page */}
-                      <Route path="summon" element={<Summon />} />
-                      <Route path="information" element={<Information />} />
-                      <Route path="chat" element={<Chat />} />
+                    {/* Summon page */}
+                    <Route path="summon" element={<Summon />} />
+                    <Route path="information" element={<Information />} />
+                    <Route path="chat" element={<Chat />} />
 
-                      {/* Tracking page */}
-                      <Route path="tracking" element={<Tracking />} />
+                    {/* Tracking page */}
+                    <Route path="tracking" element={<Tracking />} />
 
                     {/* User */}
                     {/* < Route path="/user" element={<Created_Position />}> */}
                           <Route path="created_position" element={<Created_Position />} />
                           <Route path="/map_created_position" element={<Map_Created_Position />} />     
                     {/* </Route> */}
-                          
-                
               </Route>
             </Routes>
-
           </HashRouter>
         </div>
-
       </div>
     </PositionProvider>
   )

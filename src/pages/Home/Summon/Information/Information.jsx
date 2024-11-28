@@ -1,19 +1,15 @@
-import { useState, useEffect, useRef } from "react";
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
-import { Button, Offcanvas } from "react-bootstrap";
-
+import { useEffect} from "react";
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import './Information.css'
 
 function Information({ currentLocation, priceDetails, serviceInfo, ...props }) {
-
     const navigate = useNavigate();
-
-
     const location = useLocation();
+
     const { selectedOffer } = location.state || {};
     if (!selectedOffer) {
-        return <p>ข้อมูลไม่พร้อม</p>;  // Handle case when selectedOffer is undefined
+        return <p>ข้อมูลไม่พร้อม</p>;  
     }
 
     useEffect(() => {
@@ -22,18 +18,13 @@ function Information({ currentLocation, priceDetails, serviceInfo, ...props }) {
         }
     }, [selectedOffer]);
     
-
-    return ( 
-
+    return (
         <div className='information-container'>
             <div className="title">
                 <Link 
                     to='/summon'
-                    onClick={() => setTab('summon')}
-                    // onClick={() => navigate('summon')}
-                    
-                >
-                    <i className="bi bi-caret-left-fill"></i>
+                    onClick={() => setTab('summon')}>
+                    <i class="bi bi-chevron-left"></i>
                 </Link>
                 <h1>ข้อมูลผู้ให้บริการ</h1>
             </div>

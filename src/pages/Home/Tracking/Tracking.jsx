@@ -1,10 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { Button, Offcanvas } from "react-bootstrap";
-import { Outlet } from 'react-router';
 
 import L from 'leaflet';
 import Map_Tracking from "./Map_Tracking/Map_Tracking";
+
 import { usePosition } from "../../../data/PositionContext";
 import { useRouteInfo } from "../../../data/PositionContext";
 
@@ -20,11 +19,10 @@ function Tracking() {
   const [selectedOffer, setSelectedOffer] = useState(() => {
     const storedOffer = sessionStorage.getItem('selectedOffer');
     return location.state?.selectedOffer || (storedOffer ? JSON.parse(storedOffer) : null);
-});
+    });
   const navigate = useNavigate();
 
   useEffect(() => {
-    // กำหนด selectedOffer ใหม่หาก location มีการอัปเดต
     if (location.state?.selectedOffer) {
         setSelectedOffer(location.state.selectedOffer);
     }
@@ -34,26 +32,7 @@ if (!selectedOffer) {
     return <p>ไม่มีข้อมูลการเรียกรถสไลด์</p>;
 }
 
-const goToMenu = (driver) => {
-  navigate('/menu', { state: { selectedDriver: driver } });
-};
-
-  // ดึงข้อมูล selectedOffer จาก location.state
-  // const { selectedOffer } = location.state || {}; 
-
-  const mapContainerRef = useRef(null); // Create a ref for the map container
-
-  const handleShow = () => {
-    setShow(true);
-    setTab('details');
-  };
-
-  const handleClose = () => setShow(false);
-
-  const handleTabChange = (newTab) => {
-    setTab(newTab);
-    navigate(`/home/call/offcanvas/${newTab}`);
-  };
+  const mapContainerRef = useRef(null); 
 
   useEffect(() => {
     if (origin && destination && mapContainerRef.current) {
@@ -83,13 +62,17 @@ const goToMenu = (driver) => {
 
   return ( 
     <div className="tracking-container">
+
+
       <div className="title-map">
         {/* ลิ้งกลับไปหน้าใบเสร็จ */}
         <Link to='/summon' onClick={() => setTab('summon')}>
-          <i className="bi bi-caret-left-fill"></i>
+          <i class="bi bi-chevron-left"></i>
         </Link>
         <h1>สถานะรถสไลด์</h1>
       </div>
+
+
       <div className="tracking-map">
         {origin && destination ? (
           <Map_Tracking origin={origin} destination={destination} />
@@ -138,17 +121,20 @@ const goToMenu = (driver) => {
               {selectedOffer?.reviewScore || "ไม่มีคะแนน"}
             </p>
           </div>
-          <div className="driver-call">
-            <i className="bi bi-telephone" 
-              onClick={() => window.location.href = `tel:${selectedOffer?.phoneNumber || '+0682538888'}`}>
-            </i>
+          <div className="driver-2button">
+            <button
+              className="btn btn-outline-success">
+              <i className="bi bi-telephone" 
+                onClick={() => window.location.href = `tel:${selectedOffer?.phoneNumber || '+0682538888'}`}>
+              </i>
+            </button>
           </div>
 
           {/* ลิ้งหน้าแชท */}
-          <div className="driver-chat">
+          <div className="driver-2button">
             <Link to='/chat'>
               <button 
-                className={tab === 'information' ? 'btn btn-success' : 'btn btn-outline-success'}>
+                className="btn btn-outline-success">
                 <i className="bi bi-chat"></i>
               </button>
             </Link>
@@ -160,9 +146,12 @@ const goToMenu = (driver) => {
         <div className="tracking-button">
         <Link
           to="/menu/progress"
-          state={{ selectedOffer: selectedOffer }} // ส่ง selectedOffer ไปเป็น selectedDriver
-        >
-          <Button onClick={() => setTab('/progress')}>กลับ</Button>
+          state={{ selectedOffer: selectedOffer }}>
+            <button 
+              className="btn btn-success"
+              onClick={() => setTab('/progress')}>
+              กลับ
+            </button>
         </Link>
 
         </div>

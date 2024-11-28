@@ -1,69 +1,69 @@
 .mappages-container {
   display: flex;
   flex-direction: column;
-  height: auto; /* ให้ container เต็มความสูงหน้าจอ */
-  overflow: hidden; /* ซ่อนส่วนที่เกิน */
+  height: auto;
+  overflow: hidden;
 }
 
 .map-page {
-  flex-grow: 1; /* ขยายส่วนนี้เพื่อเติมเต็มพื้นที่ระหว่าง title และ map-details */
-  height: 800px; /* ใช้ความสูงอัตโนมัติ */
-  position: relative; /* กำหนดตำแหน่งให้สัมพันธ์กับ container */
-  overflow: hidden; /* ซ่อนส่วนที่เกินขอบ */
+  flex-grow: 1; 
+  height: 800px; 
+  position: relative; 
+  overflow: hidden;
 }
 
 .leaflet-div-icon {
-  border: none !important; /* ลบขอบจาก divIcon */
-  box-shadow: none !important; /* ลบเงาที่อาจจะทำให้ดูเหมือนมีขอบ */
-  color: #0dc964; /* สีที่ต้องการ */
-  background: transparent !important; /* ลบพื้นหลัง */
-  outline: none; /* ลบขอบรอบไอคอน */
+  border: none !important; 
+  box-shadow: none !important; 
+  color: #0dc964;
+  background: transparent !important;
+  outline: none; 
 }
 
 .leaflet-control-zoom {
-  display: none !important; /* ซ่อนปุ่มซูมทั้งหมด */
+  display: none !important; 
 }
 
 /* search */
 .search-map-container {
   width: 350px;
-  top: 8.5rem; /* ระยะห่างจากด้านบน */
-  left: 50%; /* จัดกึ่งกลางในแนวนอน */
-  transform: translateX(-50%); /* ปรับให้อยู่ตรงกลางจริง */
+  top: 8.5rem; 
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  align-items: center; /* ทำให้ไอคอนและ input อยู่ในแนวเดียวกัน */
+  align-items: center;
   justify-content: flex-start;
   position: relative;
   z-index: 3000;
 
   background-color: white;
   padding: 0.5rem;
-  border-radius: 15px; /* ขอบโค้งมน */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* เงาเบลอ */
+  border-radius: 15px; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   margin: 0 ;
 }
 
 .icon {
-  margin-right: 8px; /* เพิ่มระยะห่างระหว่างไอคอนและ input */
+  margin-right: 8px;
   display: flex;
-  align-items: center; /* จัดให้อยู่ตรงกลางในแนวแกน y */
+  align-items: center; 
   padding-left: 0.2rem;
 }
 
 input[type="text"] {
   width: 300px;
-  padding: 0.5rem; /* ระยะห่างภายใน */
-  font-size: 1rem; /* ขนาดตัวอักษร */
+  padding: 0.5rem; 
+  font-size: 1rem; 
   border: 1px solid #ffffff;
-  border-radius: 10px; /* ขอบโค้งมน */
-  border: none; /* ลบขอบของ input */
-  outline: none; /* ลบเส้นขอบตอน focus */
+  border-radius: 10px;
+  border: none; 
+  outline: none; 
   box-sizing: border-box;
 }
 
 .search-results {
   position: absolute;
-  top: 80%; /* ทำให้รายการผลการค้นหาอยู่ด้านล่าง input */
+  top: 80%; 
   left: 0;
   right: 0;
   padding-top: 20px;
@@ -72,7 +72,7 @@ input[type="text"] {
   max-height: 200px;
   overflow-y: auto;
   z-index: 10;
-  border-radius: 0 0px 15px 15px; /* ขอบโค้งมน */
+  border-radius: 0 0px 15px 15px;
   border: none;
 }
 
@@ -86,7 +86,7 @@ input[type="text"] {
 }
 
 .search-results::-webkit-scrollbar {
-  width: 8px; /* ความกว้างของแถบเลื่อน */
+  width: 8px; 
 }
 
 .search-results::-webkit-scrollbar-thumb {
@@ -94,58 +94,57 @@ input[type="text"] {
   border-radius: 4px;
 }
 
-
 /* map-details */
 .map-details {
   background-color: rgb(255, 255, 255);
-  border-radius: 2rem 2rem 0 0; /* ขอบโค้งเฉพาะด้านบน */
-  position: absolute; /* ยึดตาม app-container */
-  bottom: 0; /* ชิดขอบล่างของ app-container */
-  width: 100%; /* กว้างเท่ากับ app-container */
-  height: 250px; /* กำหนดความสูงที่แน่นอน */
-  z-index: 1000; /* อยู่เหนือแผนที่ */
+  border-radius: 2rem 2rem 0 0; 
+  position: absolute; 
+  bottom: 0; 
+  width: 100%; 
+  height: 250px; 
+  z-index: 1000;
   padding: 1rem;
-  overflow-y: auto; /* เปิด scroll หากเนื้อหายาวเกิน */
-  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* เงาเบลอด้านบน */
+  overflow-y: auto; 
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); 
   display: grid;
   grid-template-rows: 2fr 1fr;
   z-index: 5000;
 }
 
 .selected-location {
-  display: flex; /* ใช้ Flexbox สำหรับจัดตำแหน่ง */
-  flex-direction: column; /* จัดลูกไปในแนวตั้ง */
-  justify-content: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-  align-items: center; /* จัดให้อยู่ตรงกลางในแนวนอน */
-  text-align: center; /* จัดข้อความให้อยู่กึ่งกลาง */
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center;
+  text-align: center; 
   margin: 1rem 1.5rem  1rem 1.5rem;
 }
 
 .selected-location h2 {
   font-weight: 600 !important;
-  margin: 0; /* ลบ margin ที่อาจทำให้ไม่อยู่ตรงกลาง */
+  margin: 0; 
 }
 
 .selected-location p {
   color: black;
   font-weight: 400 !important;    
-  margin: 0; /* ลบ margin ที่อาจทำให้ไม่อยู่ตรงกลาง */
+  margin: 0;
 }
 
 .confirm {
   display: flex;
-  justify-content: center; /* จัดกลางในแนวนอน */
-  align-items: center; /* จัดกลางในแนวตั้ง */
+  justify-content: center; 
+  align-items: center; 
 }
 
 .confirm .btn {
   width: 239px;
-  border-color: #0dc964; /* สีของกรอบ */
-  background-color: #0dc964; /* สีพื้นหลัง */
-  border-radius: 50px; /* ปรับมุมปุ่มให้โค้ง */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* เงาเบลอใต้ขอบปุ่ม */
-  padding: 10px 20px; /* ปรับระยะห่างภายในปุ่ม */
+  border-color: #0dc964;
+  background-color: #0dc964; 
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  padding: 10px 20px; 
   margin: 0;
-  font-size: 16px; /* ปรับขนาดตัวอักษร */
-  color: white; /* สีตัวอักษร */
+  font-size: 16px; 
+  color: white;
 }

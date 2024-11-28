@@ -1,12 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { Link } from 'react-router-dom';
-
 import './navbar.css'
-
 
 function Navbar() {
     const [tab, setTab] = useState();
-
     return ( 
         <div className="navbar-container">
 
@@ -45,6 +42,5 @@ function Navbar() {
         </div>
      );
 }
-
 
 export default Navbar;

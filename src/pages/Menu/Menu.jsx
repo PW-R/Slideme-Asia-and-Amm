@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from 'react-router-dom';
+
 import Progress from "./Progress/Progress";
 import Saved from "./Saved/Saved";
 import History from "./History/History";
+
 import './Menu.css'
 
 const initData = {
@@ -19,17 +21,15 @@ const initData = {
 
 function Menu() {
     const location = useLocation();
-    const [tab, setTab] = useState("progress"); // ตั้งค่าเริ่มต้นเป็น progress
+    const [tab, setTab] = useState("progress"); 
     const [data] = useState(initData);
-    const [selectedDriver, setSelectedDriver] = useState(null); // เก็บข้อมูล selectedDriver
+    const [selectedDriver, setSelectedDriver] = useState(null); 
 
-    // เช็คว่ามี state ที่ส่งมาจาก Tracking หรือไม่
     useEffect(() => {
         if (location.state?.selectedDriver) {
-            setSelectedDriver(location.state.selectedDriver); // ตั้งค่า selectedDriver จาก location.state
+            setSelectedDriver(location.state.selectedDriver); 
         }
 
-        // ตรวจสอบแท็บที่เลือก
         if (location.pathname === "/menu/progress") {
             setTab('progress');
         } else if (location.pathname === "/menu/saved") {
@@ -37,15 +37,19 @@ function Menu() {
         } else if (location.pathname === "/menu/history") {
             setTab('history');
         }
-    }, [location]); // เราจะอัปเดต `selectedDriver` เมื่อ location เปลี่ยนแปลง
+    }, [location]); 
 
     return (
         <div className="menu-container">
             <div className="title">
+
+                {/* ลิ้งไปหน้า home */}
                 <Link to='/search' onClick={() => setTab('search')}>
-                    <i className="bi bi-caret-left-fill"></i>
+                    <i class="bi bi-chevron-left"></i>
                 </Link>
                 <h1>รายการ</h1>
+
+                
             </div>
 
             <div className='menu-list-container'>

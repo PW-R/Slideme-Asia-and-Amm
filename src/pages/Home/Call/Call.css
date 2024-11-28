@@ -1,97 +1,70 @@
-/* .call-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh; 
-    overflow: hidden; 
-    z-index: 1;
-} */
-
 .call-map {
-    flex-grow: 1; /* ขยายส่วนนี้เพื่อเติมเต็มพื้นที่ระหว่าง title และ map-details */
-    height: 500px; /* ใช้ความสูงอัตโนมัติ */
+    flex-grow: 1;
+    height: 500px;
     position: relative;
     overflow: hidden;
     z-index: 1;
     top: 100px;
-    flex-grow: 1; /* ขยายพื้นที่แผนที่ */
+    flex-grow: 1;
 }
 
-/* call-tab */
 .call-tab {
     background-color: rgb(255, 255, 255);
-    border-radius: 2rem 2rem 0 0; /* ขอบโค้งเฉพาะด้านบน */
-    position: absolute; /* ยึดตาม app-container */
-    bottom: 0; /* ชิดขอบล่างของ app-container */
-    width: 100%; /* กว้างเท่ากับ app-container */
-    height: 350px; /* กำหนดความสูงที่แน่นอน */
-    z-index: 1000; /* อยู่เหนือแผนที่ */
-    /* padding: 0 1rem 1rem 1rem; */
-    overflow-y: auto; /* เปิด scroll หากเนื้อหายาวเกิน */
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* เงาเบลอด้านบน */
+    border-radius: 2rem 2rem 0 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 350px;
+    z-index: 1000;
+    overflow-y: auto;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
     z-index: 5000;
 }
 
 .two-button {
     display: flex;
-    justify-content: space-between; /* จัดปุ่มให้อยู่สองฝั่ง */
-    align-items: center; /* จัดปุ่มให้อยู่ตรงกลางในแนวตั้ง */
-    background-color: #ffffff; /* สีพื้นหลัง */
-    position: sticky; /* กำหนดให้คงที่เมื่อเลื่อน */
-    top: 0; /* ตำแหน่งด้านบน */
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    position: sticky;
+    top: 0;
     height: 70px;
-    z-index: 10; /* ระดับเลเยอร์ */
+    z-index: 10;
     padding: 0 1rem 0.5rem 1rem;
 }
 
 .two-button .nav-link {
-    color: #000000; /* สีข้อความ */
-    font-size: 1rem; /* ขนาดข้อความ */
-    padding: 0.5rem 1rem; /* ระยะห่างภายใน */
-    border-radius: 0.5rem; /* ขอบโค้ง */
-    text-decoration: none; /* ลบเส้นขีดใต้ */
+    color: #000000;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
     position: relative;
-    text-align: center; /* จัดข้อความในแนวนอน */
-    flex: 1; /* ให้ปุ่มขยายเต็มพื้นที่ในแต่ละช่อง */
+    text-align: center;
+    flex: 1;
 }
 
 .two-button .nav-link.active {
-    font-weight: bold; /* ทำให้ตัวหนาเมื่อ active */
-  }
-  
-  .two-button .nav-link.active::after {
-    content: ""; /* เพิ่มเส้นใต้ */
-    position: absolute; /* วางตำแหน่งเส้นใต้ */
-    bottom: -3px; /* ระยะห่างจากปุ่ม */
+    font-weight: bold;
+}
+
+.two-button .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
     left: 0;
-    width: 100%; /* ขยายให้เต็มความกว้างของปุ่ม */
-    height: 2px; /* ความหนาของเส้น */
-    background-color: #007bff; /* สีของเส้น */
-  }
-  
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+}
 
-/* ปรับ call-outlet ให้ปรับขนาดแบบยืดหยุ่น */
 .call-outlet {
-    overflow-y: auto; /* เปิดการเลื่อนในแนวตั้ง */
+    overflow-y: auto;
 }
 
-/* ซ่อน scrollbar สำหรับเบราว์เซอร์ที่รองรับ */
 .call-tab::-webkit-scrollbar {
-    display: none; /* ซ่อน scrollbar */
+    display: none;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .call-button {
     display: flex;
@@ -118,155 +91,51 @@
 }
 
 .offcanvas {
-    position: fixed !important; /* แก้ไข position */
+    position: fixed !important;
     top: 68%;
-    left: 49% !important; /* ตรงกลางแนวนอน */
-    transform: translate( -50%) !important; /* จัดให้อยู่ตรงกลาง */
-    width: 402px !important; /* ความกว้างคงที่ */
-    background-color: white !important; /* พื้นหลัง */
-    border-radius: 1.5rem !important; /* ขอบโค้ง */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important; /* เงา */
-    padding: 0.5rem !important; /* ระยะห่าง */
-    z-index: 1050 !important; /* ระดับเลเยอร์ */
+    left: 49% !important;
+    transform: translate( -50%) !important;
+    width: 402px !important;
+    background-color: white !important;
+    border-radius: 1.5rem !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2) !important;
+    padding: 0.5rem !important;
+    z-index: 1050 !important;
 }
 
 .offcanvas-header {
-    display: flex; /* ใช้ flexbox */
-    justify-content: space-between; /* ให้ปุ่มอยู่ห่างกัน */
-    align-items: center; /* จัดปุ่มให้อยู่ตรงกลางในแนวตั้ง */
-    width: 100%; /* ความกว้างเต็ม */
-    padding: 0.5rem; /* ระยะห่างภายใน */
-  }
-  
-  .offcanvas-header .nav-link {
-    color: #000000; /* สีข้อความ */
-    font-size: 1rem; /* ขนาดข้อความ */
-    padding: 0.5rem 1rem; /* ระยะห่างภายใน */
-    border-radius: 0.5rem; /* ขอบโค้ง */
-    text-decoration: none; /* ลบเส้นขีดใต้ */
-    position: relative;
-    text-align: center; /* จัดข้อความในแนวนอน */
-    flex: 1; /* ให้ปุ่มขยายเต็มพื้นที่ในแต่ละช่อง */
-  }
-  
-  .offcanvas-header .nav-link.active {
-    font-weight: bold; /* ทำให้ตัวหนาเมื่อ active */
-  }
-  
-  .offcanvas-header .nav-link.active::after {
-    content: ""; /* เพิ่มเส้นใต้ */
-    position: absolute; /* วางตำแหน่งเส้นใต้ */
-    bottom: -3px; /* ระยะห่างจากปุ่ม */
-    left: 0;
-    width: 100%; /* ขยายให้เต็มความกว้างของปุ่ม */
-    height: 2px; /* ความหนาของเส้น */
-    background-color: #007bff; /* สีของเส้น */
-  }
-  
-/* ปรับแต่งแถบเลื่อน */
-.offcanvas-body::-webkit-scrollbar {
-  width: 8px; /* ความกว้างของแถบเลื่อน */
-}
-
-  
-  
-
-  
-
-
-/* Call Button: ปุ่มที่อยู่กลางด้านล่าง */
-/* .call-offcanvas {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    position: absolute;
-    bottom: 6.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-} */
-
-/* .call-offcanvas .btn {
-    width: 15rem;
-    border-color: #0dc964;
-    background-color: #0dc964;
-    border-radius: 50px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 10px 20px;
-    margin: 0;
-    font-size: 16px;
-    color: white;
-    z-index: 2000;
-} */
-
-/* Offcanvas Container: ยึดตำแหน่งที่ด้านล่างของหน้าจอ */
-/* จำกัดพื้นที่ Offcanvas ให้แสดงภายใน app-container */
-/* .offcanvas-container {
-    position: fixed; 
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); 
-    z-index: 1000; 
-}
-
-.offcanvas {
-    width: 402px; 
-    height: auto; 
-    border-radius: 2rem 2rem 0 0; 
-    background-color: white; 
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); 
-    padding: 1rem; 
-    z-index: 1050; 
-}
-
-
-.nav-link {
-    font-size: 16px;
-    padding: 0.5rem 1rem;
-    text-align: center;
-    width: 100%;  */
-/* } */
-
-
-
-
-  
-
-
-
-/* Button Container: ใช้ Grid Layout เพื่อให้ปุ่มอยู่ในรูปแบบที่ต้องการ */
-/* .button-container {
     width: 100%;
-    height: 5;
-    position: absolute;
-    left: 0;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-    padding-bottom: 1rem;
-    background-color: white;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* จัดปุ่มสองปุ่ม */
-    /* align-items: center;
-    text-align: center;
-}  */
-
-/* Home Navigation: ปุ่มใน Offcanvas */
-/* .home-nav-item {
-    display: flex;
-    justify-content: center;
-    list-style: none;
+    padding: 0.5rem;
 }
 
-.home-nav-item button {
-    margin: 0;
-    padding: 0.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
+.offcanvas-header .nav-link {
+    color: #000000;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+    flex: 1;
+}
 
-/* Outlet Container: ใช้สำหรับแสดง content */
-/* .outlett-container {
-    max-height: auto;
-    overflow-y: auto;
-} */
+.offcanvas-header .nav-link.active {
+    font-weight: bold;
+}
+
+.offcanvas-header .nav-link.active::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #007bff;
+}
+
+.offcanvas-body::-webkit-scrollbar {
+    width: 8px;
+}

@@ -1,24 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { usePosition } from "../../../../data/PositionContext";
 import L from "leaflet";
+
+import "leaflet/dist/leaflet.css";
 import "./MapPage.css";
 
 function MapPage() {
-  const [position, setPosition] = useState(null);
-  const [address, setAddress] = useState("");
-  const { createdPosition, setCreatedPosition } = usePosition(); // ใช้ state เฉพาะสำหรับหน้านี้
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
   const mapRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
-  const searchType = location.state?.type || "origin"; // รับข้อมูลว่าเป็นต้นทางหรือปลายทาง
+  const searchType = location.state?.type || "origin"; 
+  const [position, setPosition] = useState(null);
+  const [address, setAddress] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
   const { setOrigin, setDestination } = usePosition();
-
   const [title, setTitle] = useState("");
 
   const customIcon = L.divIcon({
@@ -29,9 +27,9 @@ function MapPage() {
         stroke="gray" stroke-width="0.5" />
       </svg>
     `,
-    iconSize: [32, 32], // ขนาดของไอคอน (กว้าง x สูง)
-    iconAnchor: [16, 32], // จุดที่ไอคอนอ้างอิง (กลางด้านล่าง)
-    popupAnchor: [0, -32], // ตำแหน่งของ Popup (จากไอคอน)
+    iconSize: [32, 32],
+    iconAnchor: [16, 32], 
+    popupAnchor: [0, -32], 
   });
 
   // ดึงข้อมูลที่อยู่จาก Lat/Lng
@@ -43,14 +41,13 @@ function MapPage() {
         .then((response) => response.json())
         .then((data) => {
           const displayName = data.display_name;
-          const isThai = /[\u0E00-\u0E7F]/.test(displayName); // ตรวจสอบว่ามีภาษาไทยหรือไม่
-          setAddress(isThai ? displayName : `${displayName} (EN)`); // แสดงภาษาไทยก่อนภาษาอังกฤษ
+          const isThai = /[\u0E00-\u0E7F]/.test(displayName); 
+          setAddress(isThai ? displayName : `${displayName} (EN)`); 
         })
         .catch((error) => console.error("Error fetching address:", error));
     }
   }, [position]);
   
-
   useEffect(() => {
     if (searchType === "origin") {
       setTitle("ตำแหน่งต้นทาง");
@@ -90,7 +87,6 @@ function MapPage() {
     }
   };
   
-
   const MapClickHandler = () => {
     useMapEvents({
       click: (e) => {
@@ -111,8 +107,6 @@ function MapPage() {
     } else if (searchType === "destination") {
       setDestination(position);
     }
-    // setOrigin(position); 
-    // alert("ตำแหน่งต้นทางถูกบันทึกแล้ว");
     navigate("/search");
   };
 
@@ -121,28 +115,23 @@ function MapPage() {
     setSearchResults([]);
   };
   
-
   return (
     <div className="mappages-container">
-
       <div className="title-map">
         <Link to="/search">
-          <i className="bi bi-caret-left-fill"></i>
+          <i class="bi bi-chevron-left"></i>
         </Link>
         <h1>{title}</h1>
       </div>
-
       <div className="search-map-container">
         <div className="icon">
           <i class="bi bi-search"></i>        
         </div>
-
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => handleSearch(e.target.value)}
           placeholder="ค้นหาตำแหน่ง"/>
-
         {searchResults.length > 0 && (
           <div className="search-results">
             {searchResults.map((result) => (
@@ -154,46 +143,33 @@ function MapPage() {
               </div>
             ))}
           </div>
-
         )}
-
       </div>
 
       <div className="map-page">
-
         <MapContainer
           center={[13.736717, 100.523186]} // Bangkok default
           zoom={13}
           style={{ height: "80vh", width: "100%" }}
           whenCreated={(map) => (mapRef.current = map)}
-          zoomControl={false}
-          >
-          
+          zoomControl={false}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution="&copy; OpenStreetMap contributors"/>
-
           <MapClickHandler />
-
           {position && (
             <Marker position={position} icon={customIcon}>
               <Popup>{address || "ตำแหน่งที่เลือก"}</Popup>
             </Marker>
           )}
-
         </MapContainer>
       </div>
 
       <div className="map-details">
-
         <div className="selected-location">
-          {/* <p>
-            ตำแหน่งที่เลือก: {position ? `${position[0]}, ${position[1]}` : "ยังไม่ได้เลือก"}
-          </p> */}
           <h2>ตำแหน่งที่เลือก</h2>
           <p>{address || "..."}</p>
         </div>
-
         <div className="confirm">
           <button 
             className="btn btn-success" 
@@ -206,5 +182,4 @@ function MapPage() {
     </div>
   );
 }
-
 export default MapPage;

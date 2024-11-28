@@ -10,8 +10,6 @@ body {
   --bs-font-sans-serif: 'IBM Plex Sans', sans-serif;
 }
 
-
-
 .body-container {
   display: flex;
   justify-content: center;
@@ -29,12 +27,11 @@ body {
   border: 1px solid #ccc;
   overflow: hidden;
   border-radius: 1.5rem;
-  position: relative; /* ตั้ง position เพื่อให้ลูกภายในยึดตามกรอบ */
+  position: relative; 
 }
 
-
 .title {
-  position: relative; /* เปลี่ยนจาก fixed เป็น relative เพื่อให้ title อยู่ภายใน .app-container */
+  position: relative; 
   background-color: #0dc964;
   box-shadow: 0 0 10px #969696;
   height: 125px;
@@ -55,17 +52,18 @@ body {
 
 .title i {
   position: absolute;
+  top: 1rem; 
   left: 1rem; 
   font-size: 24px;
   color: #ffffff;
-  bottom: 1rem;
 }
 
+
 .title-map {
-  position: absolute; /* ใช้ absolute แทน fixed เพื่อให้อยู่ภายในกรอบ */
-  top: 0; /* ยึดอยู่ที่ด้านบนสุดของกรอบ */
-  left: 0; /* ยึดขอบซ้ายสุดของกรอบ */
-  width: 100%; /* ให้กว้างเต็มกรอบ */
+  position: absolute; 
+  top: 0; 
+  left: 0;
+  width: 100%; 
   background-color: #0dc964;
   box-shadow: 0 0 10px #969696;
   height: 125px;
@@ -74,7 +72,7 @@ body {
   justify-content: center;
   padding-bottom: 1rem;
   border-radius: 0 0 1rem 1rem;
-  z-index: 3000; /* ให้อยู่เหนือสุดภายในกรอบ */
+  z-index: 3000;
 }
 
 .title-map h1 {
@@ -86,6 +84,7 @@ body {
 
 .title-map i {
   position: absolute;
+  top: 1rem; 
   left: 1rem; 
   font-size: 24px;
   color: #ffffff;

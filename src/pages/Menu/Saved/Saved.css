@@ -14,11 +14,16 @@
     display: inline-block;
 }
 
+.s-profile-driver img {
+    width: 70px; 
+    height: 70px;
+}
+
 .s-profile-driver i {
     position: absolute;
-    bottom: 45px;
-    left: 60px;
-    font-size: 28px;
+    bottom: 40px;
+    left: 55px;
+    font-size: 23px;
     border-radius: 50%;
     color: #FFC30F;
 }

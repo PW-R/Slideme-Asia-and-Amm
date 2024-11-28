@@ -18,27 +18,21 @@
     margin-bottom: 2.5rem;
 }
 
-.profile-driver {
+.progress-profile-driver {
     position: relative;
     display: inline-block;
 }
 
-.circle-image {
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    
-    width: 80px; 
-    height: 80px;
-    background-color: #ddd;
-    border-radius: 50%; 
+.progress-profile-driver img {
+    width: 70px; 
+    height: 70px;
 }
 
-.profile-driver i {
+.progress-profile-driver i {
     position: absolute;
     bottom: 40px;
-    left: 60px;
-    font-size: 30px;
+    left: 50px;
+    font-size: 25px;
     border-radius: 50%;
     color: #0dc964;
 }
@@ -78,6 +72,6 @@
     padding-right: 0.5rem;
     font-weight: bold;
     color: #004AAD;
-    text-decoration: none; /* เอาเส้นใต้ข้อความออก */
-    border-bottom: none; /* หากมีเส้นล่างจาก border */
+    text-decoration: none; 
+    border-bottom: none;
 }
